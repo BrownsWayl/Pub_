@@ -1,0 +1,247 @@
+/* ==========================================================================
+   📊 投资风险评估现代问卷系统样式表：RiskAssessment.module.css
+   ========================================================================== */
+
+.pageGlobalBackground {
+    background-color: #f1f5f9 !important;
+    min-height: 100vh;
+    width: 100%;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+/* --- 🪐 1. 顶层标题区域 --- */
+.tableTitleArea {
+    padding: 0 0 20px 4px;
+}
+
+.tableTitleArea h2 {
+    margin: 8px 0 0 0 !important;
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    display: inline-flex !important;
+    align-items: center;
+}
+
+.tableTitleArea h2::before {
+    content: "" !important;
+    display: inline-block;
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(180deg, #00bba7 0%, #00a680 100%) !important;
+    border-radius: 2px;
+    margin-right: 8px;
+}
+
+.breadcrumb {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.breadcrumbActive {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* --- 📄 2. 大卡片容器结构 --- */
+.formCardWrapper {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    padding: 32px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid #e2e8f0 !important;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* --- 📋 3. 须知条文美化布局 --- */
+.sectionHeader {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 16px;
+}
+
+.noticeList {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.noticeList li {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    text-align: justify;
+}
+
+.importantBox {
+    background-color: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    padding: 14px 18px;
+    color: #b45309;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    line-height: 1.6;
+    margin-top: 12px;
+}
+
+/* --- 📝 4. 核心答题区（Antd Radio 深度订制） --- */
+.quizBlock {
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+}
+
+.questionTitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+
+.questionNumber {
+    color: #00bba7;
+    margin-right: 4px;
+}
+
+/* 用来包裹 Radio 的定制弹性列 */
+.radioCustomGroup {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+}
+
+/* 💡 将 Antd 原生 Radio 魔改为高级宽屏大卡片 */
+.radioCustomCard {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 14px 18px !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    margin: 0 !important;
+    /* 清除 Antd 默认自带的横向 margin */
+    box-sizing: border-box !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 鼠标悬停 */
+.radioCustomCard:hover {
+    border-color: #00bba7 !important;
+    background-color: rgba(0, 187, 167, 0.02) !important;
+}
+
+/* ⚡ 深度穿透：当 Radio 处于选中状态时，改变整张大卡片的边框和背景 */
+.radioCustomCard:global(.ant-radio-wrapper-checked) {
+    border-color: #00bba7 !important;
+    background-color: rgba(0, 187, 167, 0.04) !important;
+}
+
+/* ⚡ 深度穿透：魔改原生单选圆形框的激活边框颜色 */
+.radioCustomCard :global(.ant-radio-checked) :global(.ant-radio-inner) {
+    border-color: #00bba7 !important;
+    background-color: #00bba7 !important;
+}
+
+/* ⚡ 深度穿透：鼠标 hover 悬浮在小圆圈上时的主题色 */
+.radioCustomCard:hover :global(.ant-radio-inner) {
+    border-color: #00bba7 !important;
+}
+
+/* 字号及呼吸排版优化 */
+.radioCustomCard :global(.ant-radio)+span {
+    font-size: 14px !important;
+    color: #334155 !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+    padding-left: 10px !important;
+    white-space: normal !important;
+    /* 💡 允许超长文本在手机端自动换行 */
+}
+
+/* --- 🎛️ 5. 按钮交互样式控制 --- */
+.buttonCenterBar {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.formBottomActionsBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px dashed #e2e8f0;
+}
+
+.actionPrimaryBtn {
+    background: linear-gradient(135deg, #00bba7 0%, #00a680 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+    height: 40px !important;
+    padding: 0 28px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 187, 167, 0.2) !important;
+    cursor: pointer;
+    transition: all 0.2s ease !important;
+}
+
+.actionPrimaryBtn:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(0, 187, 167, 0.3) !important;
+    opacity: 0.95;
+}
+
+.actionSecondaryBtn {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #475569 !important;
+    height: 40px !important;
+    padding: 0 20px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+}
+
+.actionSecondaryBtn:hover {
+    border-color: #94a3b8 !important;
+    color: #1e293b !important;
+    background-color: #f8fafc !important;
+}
+
+/* --- 📱 6. 移动端自适应 --- */
+@media (max-width: 767px) {
+    .pageGlobalBackground {
+        padding: 12px;
+    }
+
+    .formCardWrapper {
+        padding: 20px 16px;
+    }
+
+    .formBottomActionsBar {
+        flex-direction: column-reverse;
+        gap: 12px;
+    }
+
+    .actionPrimaryBtn,
+    .actionSecondaryBtn {
+        width: 100% !important;
+    }
+}

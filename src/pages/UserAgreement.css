@@ -1,0 +1,188 @@
+/* ==========================================================================
+   📄 全球法务条款精细排版样式表：UserAgreement.css（大字号优化版）
+   ========================================================================== */
+
+/* 1. 两栏主页面骨架 */
+.protocol-page-container {
+    width: 100%;
+    min-height: calc(100vh - 68px - 48px);
+    background-color: #ffffff;
+    display: flex;
+    box-sizing: border-box;
+}
+
+/* 🧭 左侧悬浮固定的法务导航栏 */
+.protocol-sidebar {
+    flex: 0 0 280px;
+    background-color: #f9fafb;
+    border-right: 1px solid #f3f4f6;
+    padding: 40px 24px;
+    box-sizing: border-box;
+}
+
+.sidebar-sticky-box {
+    position: sticky;
+    top: 40px;
+}
+
+.sidebar-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+    padding-left: 8px;
+    border-left: 3px solid #ef4444;
+    /* 延续平台红 */
+}
+
+.sidebar-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu-list li {
+    font-size: 14px;
+    color: #4b5563;
+    padding: 12px 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-menu-list li:hover {
+    background-color: #f3f4f6;
+    color: #ef4444;
+    font-weight: 500;
+}
+
+/* 📄 右侧正文滚动区域 */
+.protocol-content-wrapper {
+    flex: 1;
+    padding: 60px 80px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+/* 契约文章排版尺寸控制 */
+.protocol-article {
+    width: 100%;
+    max-width: 760px;
+}
+
+/* 每一个独立的法律核心区块 */
+.protocol-section {
+    padding: 10px 0;
+}
+
+/* ==========================================================================
+   🅰️ 字体放大核心微调区（期刊级比例优化）
+   ========================================================================== */
+
+/* 主协议标题 */
+.protocol-section h1 {
+    font-size: 32px;
+    /* 👈 从 28px 放大到 32px */
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 28px 0;
+    text-align: center;
+}
+
+/* 附件一级大标题（如：附件1 交易细则） */
+.protocol-section h2 {
+    font-size: 24px;
+    /* 👈 从 20px 放大到 24px */
+    font-weight: 700;
+    color: #111827;
+    margin-top: 44px;
+    margin-bottom: 24px;
+    letter-spacing: 0.3px;
+}
+
+/* 章节内二级小标题（如：释义、1. 本协议） */
+.protocol-section h3 {
+    font-size: 18px;
+    /* 👈 从 15px 放大到 18px */
+    font-weight: 600;
+    color: #1f2937;
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+/* 核心法律合同正文文本 */
+.protocol-section p {
+    font-size: 16px;
+    /* 👈 从 14px 统一放大到 16px，主流网页高可读性字号 */
+    color: #374151;
+    /* 颜色微微加深，提升长文字对比度 */
+    line-height: 1.85;
+    /* 增大行高，确保字号变大后不显得拥挤 */
+    margin: 0 0 20px 0;
+    /* 增大段落底边距 */
+    text-align: justify;
+    /* 两端对齐，排版更严谨 */
+}
+
+/* 强效加粗词条样式 */
+.protocol-section p strong {
+    color: #111827;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   ⚙️ 辅助分割线与响应式控制
+   ========================================================================== */
+
+/* 区块分割线 */
+.protocol-divider {
+    border: none;
+    border-top: 1px dashed #e5e7eb;
+    margin: 48px 0;
+}
+
+/* 极致移动端响应式自适应设计 */
+@media (max-width: 1024px) {
+    .protocol-content-wrapper {
+        padding: 40px 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .protocol-page-container {
+        flex-direction: column !important;
+    }
+
+    /* 移动端下隐藏侧边悬浮导航栏 */
+    .protocol-sidebar {
+        display: none !important;
+    }
+
+    .protocol-content-wrapper {
+        padding: 32px 20px !important;
+    }
+
+    /* 移动端下字体微调，防止大屏幕尺寸在手机上过大 */
+    .protocol-section h1 {
+        font-size: 26px !important;
+    }
+
+    .protocol-section h2 {
+        font-size: 20px !important;
+    }
+
+    .protocol-section h3 {
+        font-size: 17px !important;
+    }
+
+    .protocol-section p {
+        font-size: 15px !important;
+        /* 手机端 15px 体验最佳 */
+        line-height: 1.75 !important;
+    }
+}

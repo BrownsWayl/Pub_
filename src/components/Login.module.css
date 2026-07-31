@@ -1,0 +1,273 @@
+/* ==========================================================================
+   🌓 登录页面独立样式表：Login.module.css
+   ========================================================================== */
+
+/* 1. 无缝纯白分屏自适应主容器 */
+.authPageContainer {
+    width: 100%;
+    min-height: calc(100vh - 68px - 48px);
+    background: #ffffff;
+    display: flex;
+    box-sizing: border-box;
+}
+
+/* 🌄 网页端 50% 插画展示区 */
+.authLeftBanner {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border-right: 1px solid #f3f4f6;
+    padding: 60px;
+    box-sizing: border-box;
+}
+
+.leftBannerInner {
+    max-width: 460px;
+    text-align: center;
+}
+
+.leftBannerInner h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 16px;
+    margin-top: 0;
+}
+
+.leftBannerInner p {
+    font-size: 15px;
+    color: #4b5563;
+    margin: 0 0 40px 0;
+}
+
+.leftBannerInner img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+/* 📝 右半边表单交互包装器 */
+.authRightFormWrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+/* 表单核心内容限制框 */
+.formInnerBlock {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* 欢迎登录大标题 */
+.loginMainTitle {
+    font-size: 30px;
+    font-weight: 600;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 36px;
+    margin-top: 0;
+}
+
+.formScrollBox {
+    height: auto;
+    position: relative;
+    width: 100%;
+}
+
+/* ==========================================================================
+   ⚡ 弹性组合大框样式（彻底干掉内部黑框与任何内部蓝色高亮） 
+   ========================================================================== */
+
+/* 复合账号输入框的自主定义外壳 */
+.combinedInputWrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 52px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 0 4px 0 12px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    transition: all 0.2s;
+}
+
+/* 仅在最外层大框聚焦时产生统一的蓝框高亮反馈 */
+.combinedInputWrapper:focus-within {
+    border-color: #4096ff;
+    box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+}
+
+/* 1. 强效加宽并死锁左侧嵌入式下拉框外层，提供 85px 充分宽度空间 */
+.compactSelect {
+    width: 85px !important;
+    min-width: 85px !important;
+    flex-shrink: 0 !important;
+    height: 100% !important;
+    position: relative !important;
+    margin-right: 12px !important;
+    border: none !important;
+    /* 彻底清除可能存在的微型外框 */
+}
+
+/* 2. 精密绘制悬浮灰色竖杠分割线 */
+.compactSelect::after {
+    content: "" !important;
+    position: absolute !important;
+    right: -4px;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 1px !important;
+    height: 20px !important;
+    background-color: #d1d5db !important;
+    pointer-events: none !important;
+}
+
+/* 
+   3. ⚡【核心修复点】：
+   深度穿透强制剥离 Select 内部 Selector 的 border 属性，彻底消除黑框及蓝框残留。
+*/
+.compactSelect :global(.ant-select-selector) {
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    border: none !important;
+    /* 👈 强制覆盖任何原生或变体生成的黑框 */
+    box-shadow: none !important;
+    /* 👈 强行关闭任何激活阴影 */
+    outline: none !important;
+}
+
+/* 
+   4. ⚡【核心修复点】：
+   深度穿透彻底斩断内部纯文本输入框在任何状态下的默认边框与高亮，清除框中之框。
+*/
+.pureInput,
+.pureInput:focus,
+.pureInput:global(.ant-input),
+.pureInput:global(.ant-input-focused) {
+    flex: 1 !important;
+    height: 100% !important;
+    font-size: 15px !important;
+    padding-left: 4px !important;
+    border: none !important;
+    /* 👈 强制剔除内部多余的黑色硬边框 */
+    box-shadow: none !important;
+    /* 👈 强制剔除多余阴影 */
+    outline: none !important;
+}
+
+/* 5. 普通独立密码框的大号体积尺寸 */
+.passwordLargeInput {
+    height: 52px !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    width: 100% !important;
+}
+
+/* 密码框小锁图标 */
+.lockIcon {
+    color: #9ca3af;
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+/* ==========================================================================
+   🔘 按钮与底部公共样式
+   ========================================================================== */
+
+/* 忘记密码区块 */
+.forgotRow {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 28px;
+}
+
+.forgotRow a {
+    color: #4b5563;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.forgotRow a:hover {
+    color: #ef4444;
+}
+
+/* 大号红色提交胶囊按钮 */
+.submitBtn {
+    width: 100%;
+    height: 52px !important;
+    background: #ef4444 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 26px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25) !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.submitBtn:hover {
+    filter: brightness(0.9) !important;
+    box-shadow: 0 6px 18px rgba(239, 68, 68, 0.35) !important;
+}
+
+/* 底部引导开户 */
+.registerFooter {
+    text-align: center;
+    font-size: 14px;
+    color: #4b5563;
+    margin-top: 28px;
+}
+
+.registerFooter span {
+    color: #ef4444;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.registerFooter span:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   📱 2. 极致移动端自适应
+   ========================================================================== */
+@media (max-width: 767px) {
+    .authPageContainer .authLeftBanner {
+        display: none !important;
+    }
+
+    .authPageContainer {
+        flex-direction: column !important;
+        height: calc(100vh - 68px - 48px) !important;
+    }
+
+    .authPageContainer .authRightFormWrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        flex: 1 !important;
+        padding: 24px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        background-color: #ffffff !important;
+    }
+
+    .formInnerBlock {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}

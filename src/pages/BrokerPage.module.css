@@ -1,0 +1,308 @@
+/* ==========================================================================
+   📊 大厂精简版：BrokerPage.module.css (瘦身 50%，逻辑更清晰)
+   ========================================================================== */
+
+/* --- 🪐 1. 全局底色与通用页面级标题 --- */
+.pageGlobalBackground {
+    background-color: #f1f5f9 !important;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tableTitleArea {
+    padding: 16px 0 0 10px;
+}
+
+.tableTitleArea h2 {
+    margin: 0 !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    display: inline-flex !important;
+    align-items: center;
+}
+
+.tableTitleArea h2::before {
+    content: "" !important;
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: linear-gradient(180deg, #00bba7 0%, #00a680 100%) !important;
+    border-radius: 2px;
+    margin-right: 10px;
+}
+
+/* --- 🔍 2. 顶栏筛选自适应容器 (通用) --- */
+.compactForm {
+    margin: 0 !important;
+}
+
+.filterResponsiveContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+}
+
+.filterItem {
+    flex: 1;
+    min-width: 140px;
+}
+
+.filterItem:last-child {
+    flex: 1.2;
+    min-width: 160px;
+}
+
+.filterButtons {
+    display: flex;
+    gap: 8px;
+}
+
+/* --- 📊 3. 表格体与分页一体化包裹大白卡片 --- */
+.modernFancyTableWrapper {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 16px -6px rgba(0, 0, 0, 0.03) !important;
+    border: 1px solid #e2e8f0 !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 清空 Antd 默认背景，统一透出大框白底 */
+.modernFancyTableWrapper :global(.ant-table) {
+    background: transparent !important;
+}
+
+/* 表头轻量清爽化 */
+.modernFancyTableWrapper :global(.ant-table-thead)>tr>th {
+    background-color: #fafbfc !important;
+    color: #475569 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 16px 12px !important;
+}
+
+/* --- ✨ 4. 网页 PC 端真·极简斑马纹与柔和呼吸 Hover 特效 --- */
+.modernFancyRow {
+    cursor: pointer !important;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* 斑马纹基础单元格定义 (奇数纯白，偶数极淡雅 Slate-50) */
+.modernFancyRow:nth-child(odd)>td,
+.modernFancyRow:nth-child(even)>td {
+    padding: 18px 12px !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.modernFancyRow:nth-child(odd)>td {
+    background-color: #ffffff !important;
+}
+
+.modernFancyRow:nth-child(even)>td {
+    background-color: #f8fafc !important;
+}
+
+/* 🚀【PC 端终极微光悬浮】：剔除粗硬描边，改用通透青绿线性微光 + 散射软投影 */
+.modernFancyRow:hover {
+    transform: translateY(-1.5px) !important;
+    z-index: 5 !important;
+}
+
+.modernFancyRow:hover>td {
+    background: linear-gradient(90deg, rgba(0, 187, 167, 0.05) 0%, rgba(248, 250, 252, 0.8) 100%) !important;
+    border-bottom-color: #cbd5e1 !important;
+    box-shadow: 0 4px 12px -2px rgba(0, 187, 167, 0.06) !important;
+    color: #0f172a !important;
+}
+
+.modernFancyRow:hover span[style*="pointer"] {
+    color: #00bba7 !important;
+    transition: color 0.2s ease;
+}
+
+/* ==========================================================================
+   🚀 5. 【底部分页栏：一体化双端对齐底衬】
+   ========================================================================== */
+.customPaginationBar,
+.pageSizeSelectArea,
+.paginationRightControls {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.customPaginationBar {
+    justify-content: space-between !important;
+    padding: 18px 24px !important;
+    border-top: 1px solid #f1f5f9 !important;
+    background-color: #ffffff !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.paginationLeftInfo {
+    font-size: 13px !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+}
+
+.paginationRightControls {
+    gap: 16px !important;
+}
+
+.pageSizeSelectArea {
+    gap: 6px;
+}
+
+/* 魔改项数原生下拉框 */
+.nativePageSizeSelector {
+    border: 1px solid #e2e8f0 !important;
+    background: #f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='14' height='14' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 6px center !important;
+    border-radius: 6px !important;
+    height: 28px !important;
+    padding: 0 24px 0 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    outline: none !important;
+    cursor: pointer !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+}
+
+.nativePageSizeSelector:hover {
+    border-color: #00bba7 !important;
+    background-color: #ffffff !important;
+}
+
+/* Antd pagination 组件颗粒化美化浸染 */
+.paginationRightControls :global(.ant-pagination) {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item),
+.paginationRightControls :global(.ant-pagination-prev),
+.paginationRightControls :global(.ant-pagination-next) {
+    border: none !important;
+    background: transparent !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    color: #64748b !important;
+    transition: all 0.2s ease !important;
+}
+
+/* 翻页小胶囊与高亮激活态 */
+.paginationRightControls :global(.ant-pagination-prev .ant-pagination-item-link),
+.paginationRightControls :global(.ant-pagination-next .ant-pagination-item-link) {
+    background: #f1f5f9 !important;
+    border-radius: 8px !important;
+    height: 32px !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item-active) {
+    background: linear-gradient(135deg, #00bba7 0%, #00a680 100%) !important;
+    box-shadow: 0 4px 12px rgba(0, 187, 167, 0.25) !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item-active a) {
+    color: #ffffff !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item:not(.ant-pagination-item-active):hover) {
+    background-color: #f1f5f9 !important;
+    color: #00bba7 !important;
+}
+
+.paginationRightControls :global(.ant-pagination-disabled .ant-pagination-item-link) {
+    background: #f8fafc !important;
+    color: #cbd5e1 !important;
+    cursor: not-allowed !important;
+}
+
+
+/* ==========================================================================
+   📱 6. 【移动端自适应微调 (max-width: 767px)】(仅保留必要的排版强控)
+   ========================================================================== */
+@media (max-width: 767px) {
+
+    /* 输入框强制100%垂直铺开 */
+    .filterResponsiveContainer {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    .filterItem,
+    .filterButtons {
+        width: 100% !important;
+    }
+
+    .filterButtons {
+        display: flex !important;
+        gap: 8px !important;
+    }
+
+    /* 强洗全局 Card 自带的内边距，让外围灰色底显现出来 */
+    :global(.broker-filter-card) {
+        background-color: #f1f5f9 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    :global(.broker-filter-card) :global(.ant-card-body) {
+        background-color: #ffffff !important;
+        margin: 10px !important;
+        padding: 16px !important;
+        border-radius: 8px !important;
+        border: 1px solid #e2e8f0 !important;
+    }
+
+    /* 移动端白卡片等宽外缩进 10px 锁定 */
+    .modernFancyTableWrapper {
+        margin: 10px !important;
+        width: calc(100% - 20px) !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .customPaginationBar {
+        padding: 12px !important;
+    }
+
+    .paginationLeftInfo {
+        font-size: 11px !important;
+        white-space: nowrap !important;
+    }
+
+    .paginationRightControls {
+        gap: 0 !important;
+    }
+
+    /* 移动端 Simple 分页输入框垂直居中打磨 */
+    .paginationRightControls :global(.ant-pagination-simple-pager) {
+        display: inline-flex !important;
+        align-items: center !important;
+        height: 32px !important;
+    }
+
+    .paginationRightControls :global(.ant-pagination-simple-pager input) {
+        border: 1px solid #e2e8f0 !important;
+        background-color: #f8fafc !important;
+        border-radius: 6px !important;
+        height: 24px !important;
+        text-align: center !important;
+        font-weight: 700 !important;
+        color: #00bba7 !important;
+    }
+}

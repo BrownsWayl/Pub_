@@ -1,0 +1,54 @@
+/* ==========================================================================
+   🎯 【个人资料 Profile 页面专属样式】
+   ========================================================================== */
+
+/* 1. 基本信息列表两列对齐样式 */
+.profile-row {
+    display: flex;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px dashed #f3f4f6;
+    font-size: 13px;
+}
+
+.profile-label {
+    width: 120px;
+    text-align: right;
+    padding-right: 24px;
+    color: #4b5563;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.profile-value {
+    color: #1f2937;
+    flex: 1;
+    word-break: break-all;
+}
+
+/* 2. 修改密码表单细节微调 */
+.profile-password-form .ant-form-item-label>label {
+    font-weight: 500 !important;
+    color: #374151 !important;
+}
+
+/* 📱 3. 移动端响应式折叠布局 */
+@media (max-width: 767px) {
+    .profile-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 12px 0;
+    }
+
+    .profile-label {
+        width: 100%;
+        text-align: left;
+        padding-right: 0;
+        color: #6b7280;
+    }
+
+    .profile-value {
+        padding-left: 0;
+    }
+}

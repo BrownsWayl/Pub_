@@ -1,0 +1,74 @@
+/* ==========================================================================
+   🚀 【后台管理侧边栏专用样式表】
+   📌 功能特点：全扁平无下拉、高呼吸感、直角商务风、彻底修复点击抖动缺陷
+   ========================================================================== */
+
+@media (min-width: 768px) {
+
+    /* 强控 PC 端侧边栏 Menu 组件背景色与整体内边距 */
+    .pc-dashboard-sider .ant-menu {
+        background-color: #ffffff !important;
+        border-inline-end: none !important;
+        /* 彻底移除 antd 侧边栏自带的玄色细右边框 */
+        padding: 16px 0 !important;
+    }
+
+    /* 1. 默认状态下的全平铺单菜单项 */
+    .pc-dashboard-sider .ant-menu-item {
+        height: 56px !important;
+        line-height: 56px !important;
+        margin: 4px 0 !important;
+        padding: 0 24px !important;
+        width: 100% !important;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+        color: #4b5563 !important;
+        /* 优雅的无衬线炭边黑 */
+        border-radius: 0 !important;
+        /* 彻底打碎原图 1 的圆角，走图 2 的精细直角商务风 */
+        background-color: transparent !important;
+
+        /* 👈 【抗抖动核心 1】：默认状态下直接放置 4px 的透明边框进行物理占位 */
+        border-left: 4px solid transparent !important;
+        transition: all 0.15s ease !important;
+    }
+
+    /* 2. 鼠标悬停交互效果 */
+    .pc-dashboard-sider .ant-menu-item:hover {
+        background-color: #f9fafb !important;
+        color: #ef4444 !important;
+    }
+
+    /* 3. 选中激活高亮状态（完美看齐图 2 灵魂） */
+    .pc-dashboard-sider .ant-menu-item-selected {
+        color: #ef4444 !important;
+        /* 全局统一的品牌高亮红 */
+        background-color: #fef2f2 !important;
+        /* 极淡的红底衬托暗示 */
+        font-weight: 600 !important;
+
+        /* 👈 【抗抖动核心 2】：激活时仅改变边框颜色，总尺寸毫无变动，文字图标稳如泰山 */
+        border-left-color: #ef4444 !important;
+    }
+
+    /* 4. 金融级图标高规格校正 */
+    .pc-dashboard-sider .ant-menu-item .anticon {
+        font-size: 18px !important;
+        margin-right: 14px !important;
+        color: #9ca3af !important;
+        /* 默认沉稳灰色 */
+        transition: color 0.15s ease !important;
+    }
+
+    /* 5. 联动控制：悬浮与激活选中时，图标同步转化为品牌红 */
+    .pc-dashboard-sider .ant-menu-item:hover .anticon,
+    .pc-dashboard-sider .ant-menu-item-selected .anticon {
+        color: #ef4444 !important;
+    }
+
+    /* 6. 强控扁平分组线样式（Antd 原生 Divider 映射） */
+    .pc-dashboard-sider .ant-menu-item-divider {
+        border-top: 1px solid #f3f4f6 !important;
+        margin: 16px 0 !important;
+    }
+}

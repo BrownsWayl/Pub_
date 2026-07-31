@@ -1,0 +1,380 @@
+/* ==========================================================================
+   📊 佣金报表终极自适应版：commissionreport.module.css
+   ========================================================================== */
+
+.pageGlobalBackground {
+    background-color: #f1f5f9 !important;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- 🪐 1. 顶部标题与面包屑 --- */
+.tableTitleArea {
+    padding: 16px 0 0 10px;
+}
+
+.tableTitleArea h2 {
+    margin: 0 !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    display: inline-flex !important;
+    align-items: center;
+}
+
+.tableTitleArea h2::before {
+    content: "" !important;
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: linear-gradient(180deg, #00bba7 0%, #00a680 100%) !important;
+    border-radius: 2px;
+}
+
+.breadcrumb {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.breadcrumbActive {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* --- 🔍 2. 顶栏查询区域（自适应弹性防溢出） --- */
+.compactForm {
+    margin: 0 !important;
+}
+
+.filterResponsiveContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.filterItemBtn {
+    flex: 0 0 90px;
+}
+
+.filterItem {
+    flex: 1 1 110px;
+}
+
+.filterItemDate {
+    flex: 1 1 140px;
+}
+
+.filterItemInput {
+    flex: 1.5 1 160px;
+}
+
+.filterButtonsGroup {
+    display: flex;
+    gap: 6px;
+    flex: 2 1 240px;
+}
+
+/* --- 📊 3. 表格整体包装器与大厂斑马纹 --- */
+.modernFancyTableWrapper {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid #e2e8f0 !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tableHeaderBar {
+    display: none !important;
+}
+
+/* 强制重写 Antd 表头 */
+.modernFancyTableWrapper :global(.ant-table-thead)>tr>th {
+    background-color: #fafbfc !important;
+    color: #475569 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 16px 12px !important;
+}
+
+/* 斑马纹交替单元格底色与贝塞尔平滑过渡 */
+.modernFancyRow {
+    cursor: pointer !important;
+    position: relative;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.modernFancyRow:nth-child(odd)>td {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    padding: 14px 12px !important;
+}
+
+.modernFancyRow:nth-child(even)>td {
+    background-color: #f8fafc !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    padding: 14px 12px !important;
+}
+
+.modernFancyRow:hover {
+    transform: translateY(-1px) !important;
+    z-index: 5 !important;
+}
+
+.modernFancyRow:hover>td {
+    background: linear-gradient(90deg, rgba(0, 187, 167, 0.03) 0%, rgba(248, 250, 252, 0.9) 100%) !important;
+    box-shadow: 0 4px 12px -2px rgba(0, 187, 167, 0.06) !important;
+}
+
+/* 细线圆圈展开图标美化 */
+.modernFancyTableWrapper :global(.ant-table-row-expand-icon) {
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    color: #64748b !important;
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: bold !important;
+    transition: all 0.2s ease !important;
+}
+
+.modernFancyTableWrapper :global(.ant-table-row-expand-icon:hover) {
+    border-color: #00bba7 !important;
+    color: #00bba7 !important;
+}
+
+
+/* ==========================================================================
+   🔥 4. 绝对穿透：彻底释放子表格，让其回归天然自适应平铺 🔥
+   ========================================================================== */
+
+/* 1. 强制清空外层 Table 展开单元格 td 的所有默认 Padding */
+.modernFancyTableWrapper :global(.ant-table-expanded-row)> :global(.ant-table-cell) {
+    padding: 0 !important;
+    background-color: #f8fafc !important;
+}
+
+.modernFancyTableWrapper :global(.ant-table-expanded-row-fixed) {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+/* 
+   2. 子表格外层包装容器：
+      - margin-left: -45px 平移贴边，彻底吃掉左侧空白。
+      - width: 直接把宽度设为父容器的 100%，跟随外层大卡片自然排布。
+      - padding-right: 右侧特意保留 12px 呼吸间距，保证最右侧绝对不贴死边界。
+*/
+.innerTableContainer {
+    padding: 6px 12px 6px 0 !important;
+    margin-left: -45px !important;
+    background-color: #f8fafc !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    /* 允许内容天然横向延展，拒绝任何截断行为 */
+}
+
+/* 
+   3. 强制干掉 Antd 自动添加的 fixed 布局，全面恢复为 auto 布局！
+      让浏览器根据各列中文字的“实际长度”自动分配空间。
+      短内容列会自动缩窄，长内容列自动分得更多宽度，完美在屏幕内并排！
+*/
+.innerTableContainer :global(.ant-table-wrapper) :global(.ant-table) {
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: auto !important;
+}
+
+/* 4. 子表格内部单元格的高级微调 */
+.innerTableContainer :global(.ant-table-thead)>tr>th,
+.innerTableContainer :global(.ant-table-tbody)>tr>td {
+    padding: 8px 4px !important;
+    /* 极其紧凑高级的单元格间距 */
+    font-size: 13px !important;
+    /* 维持清晰美观的 13px 标准字号 */
+    white-space: nowrap !important;
+    background-color: #f8fafc !important;
+    text-align: center !important;
+}
+
+
+/* --- 🎛️ 5. 分页及两端对齐 --- */
+.customPaginationBar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 18px 24px !important;
+    border-top: 1px solid #f1f5f9 !important;
+    background-color: #ffffff !important;
+}
+
+.paginationLeftWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.paginationLeftInfo {
+    font-size: 13px !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+}
+
+.totalSumArea {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.sumHighlight {
+    color: #16a34a !important;
+    font-weight: 700;
+}
+
+.lotHighlight {
+    color: #0284c7 !important;
+    font-weight: 700;
+}
+
+.paginationRightControls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+}
+
+.pageSizeSelectArea {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+/* 一比一复刻图 2 的精美灰色细弯折线向下三角下拉框 */
+.nativePageSizeSelectorMini {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    border: 1px solid #cbd5e1 !important;
+    background: #f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 6px center !important;
+    border-radius: 6px !important;
+    height: 28px !important;
+    padding: 0 24px 0 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    outline: none !important;
+    cursor: pointer !important;
+    background-size: 12px !important;
+    transition: all 0.2s ease !important;
+}
+
+.nativePageSizeSelectorMini:hover {
+    border-color: #00bba7 !important;
+    background-color: #ffffff !important;
+}
+
+/* Antd Pagination 圆角绿色高亮魔改 */
+.paginationRightControls :global(.ant-pagination-item),
+.paginationRightControls :global(.ant-pagination-prev),
+.paginationRightControls :global(.ant-pagination-next) {
+    border: none !important;
+    background: transparent !important;
+    border-radius: 8px !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: 600 !important;
+}
+
+.paginationRightControls :global(.ant-pagination-prev .ant-pagination-item-link),
+.paginationRightControls :global(.ant-pagination-next .ant-pagination-item-link) {
+    background-color: #f3f4f6 !important;
+    border-radius: 8px !important;
+    color: #374151 !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item-active) {
+    background-color: #00bba7 !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item-active a) {
+    color: #ffffff !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item a) {
+    color: #1f2937 !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item:not(.ant-pagination-item-active):hover) {
+    background-color: #f3f4f6 !important;
+}
+
+.paginationRightControls :global(.ant-pagination-disabled .ant-pagination-item-link) {
+    background-color: #f9fafb !important;
+    color: #d1d5db !important;
+}
+
+/* --- 📱 6. 极致移动端自适应（彻底消灭双重滚动条） --- */
+@media (max-width: 767px) {
+    .filterResponsiveContainer {
+        flex-direction: column !important;
+    }
+
+    .filterItemBtn,
+    .filterItem,
+    .filterItemDate,
+    .filterItemInput,
+    .filterButtonsGroup {
+        width: 100% !important;
+        flex: none !important;
+    }
+
+    .customPaginationBar {
+        padding: 12px 16px !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+    }
+
+    .totalSumArea {
+        font-size: 11px;
+    }
+
+    /* 
+       🚀 移动端终极脱屑套娃滚动：
+       - overflow-x: 强制设为 visible，彻底消灭子 Table 的局部滚动条。
+       - margin-left / width: 在手机上不需要强行向左平移，直接设为 100% 自然跟滑。
+    */
+    .innerTableContainer {
+        margin-left: 0 !important;
+        padding: 6px 0 !important;
+        width: 100% !important;
+        overflow-x: visible !important;
+        /* 👈 彻底关掉子表格局部横向滚动 */
+    }
+
+    /* 保证子表格在手机端不被强制压扁，允许它跟随父级一起向右自由延展滑动 */
+    .innerTableContainer :global(.ant-table-wrapper) :global(.ant-table) {
+        width: auto !important;
+        max-width: none !important;
+        table-layout: auto !important;
+    }
+}

@@ -1,0 +1,316 @@
+/* ==========================================================================
+   🌓 注册页面精简响应式样式表：Register.css
+   ========================================================================== */
+
+/* 1. 无缝纯白分屏自适应主容器 */
+.auth-page-container {
+    width: 100%;
+    min-height: calc(100vh - 68px - 48px);
+    background: #ffffff;
+    display: flex;
+    box-sizing: border-box;
+}
+
+/* 🌄 网页端 50% 插画展示区 */
+.auth-left-banner {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border-right: 1px solid #f3f4f6;
+    padding: 60px;
+    box-sizing: border-box;
+}
+
+.left-banner-inner {
+    max-width: 460px;
+    text-align: center;
+}
+
+.left-banner-inner h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 16px;
+    margin-top: 0;
+}
+
+.left-banner-inner p {
+    font-size: 15px;
+    color: #4b5563;
+    margin: 0 0 40px 0;
+}
+
+.left-banner-inner img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+/* 📝 右半边表单交互包装器 */
+.auth-right-form-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+/* 表单核心内容限制框 */
+.form-inner-block {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* 欢迎加入主标题 */
+.register-main-title {
+    font-size: 30px;
+    font-weight: 600;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 36px;
+    margin-top: 0;
+}
+
+.form-scroll-box {
+    height: auto;
+    position: relative;
+    width: 100%;
+}
+
+/* ==========================================================================
+   ⚡ 核心强控：锁定 95px 国旗宽度，彻底消除一切内部黑/蓝框
+   ========================================================================== */
+
+/* 复合账号输入框的自主定义外壳 */
+.combined-input-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 52px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 0 4px 0 12px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    transition: all 0.2s;
+}
+
+/* 仅在组合外框聚焦时产生统一的蓝框高亮反馈 */
+.combined-input-wrapper:focus-within {
+    border-color: #4096ff;
+    box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+}
+
+/* 1. 锁死左侧国家区号选择框物理宽度，为 “国旗+区号” 预留出完美的 95px */
+.compact-select {
+    width: 95px !important;
+    min-width: 95px !important;
+    flex-shrink: 0 !important;
+    height: 100% !important;
+    position: relative !important;
+    margin-right: 12px !important;
+    border: none !important;
+}
+
+/* 2. 精密绘制悬浮灰色竖杠分割线 */
+.compact-select::after {
+    content: "" !important;
+    position: absolute !important;
+    right: -4px;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 1px !important;
+    height: 20px !important;
+    background-color: #d1d5db !important;
+    pointer-events: none !important;
+}
+
+/* 3. 强力穿透剥离 Select 内部 Selector 的所有原生 border 与阴影，根治黑框 */
+.compact-select .ant-select-selector {
+    height: 100% !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* 4. 右侧纯净文本输入框，深度隔离多余黑框蓝框 */
+.pure-input,
+.pure-input:focus,
+.pure-input.ant-input,
+.pure-input.ant-input-focused {
+    flex: 1 !important;
+    height: 100% !important;
+    font-size: 15px !important;
+    padding-left: 4px !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* 5. 验证码等其他标准大号输入框尺寸 */
+.large-input {
+    height: 52px !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    width: 100% !important;
+}
+
+/* 验证码内部文本获取按钮 */
+.captcha-btn {
+    color: #ef4444 !important;
+    padding: 0 4px !important;
+    height: auto !important;
+    font-weight: 500 !important;
+}
+
+.captcha-btn:hover {
+    color: #fca5a5 !important;
+}
+
+/* ==========================================================================
+   🔘 其它公共组件样式
+   ========================================================================== */
+
+/* 邀请码折叠区域 */
+.invite-toggle-row {
+    margin-bottom: 20px;
+}
+
+.invite-trigger {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: #4b5563;
+    font-size: 14px;
+}
+
+.invite-arrow {
+    font-size: 10px;
+    margin-left: 6px;
+    transition: transform 0.2s;
+}
+
+.invite-arrow.rotated {
+    transform: rotate(180deg);
+}
+
+.invite-input {
+    height: 44px !important;
+    border-radius: 6px !important;
+}
+
+/* 用户协议勾选 */
+.agreement-checkbox {
+    color: #6b7280 !important;
+    font-size: 13px !important;
+    align-items: flex-start !important;
+}
+
+.agreement-text {
+    display: inline-block;
+    margin-top: -2px;
+}
+
+.agreement-text a {
+    color: #ef4444;
+    text-decoration: none;
+}
+
+.agreement-text a:hover {
+    text-decoration: underline;
+}
+
+/* 大号红色提交胶囊按钮 */
+.submit-btn {
+    width: 100%;
+    height: 52px !important;
+    background: #ef4444 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 26px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25) !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.submit-btn:hover {
+    filter: brightness(0.9) !important;
+    box-shadow: 0 6px 18px rgba(239, 68, 68, 0.35) !important;
+}
+
+/* 底部去登录链接 */
+.register-footer {
+    text-align: center;
+    font-size: 14px;
+    color: #4b5563;
+    margin-bottom: 24px;
+}
+
+.register-footer span {
+    color: #ef4444;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.register-footer span:hover {
+    text-decoration: underline;
+}
+
+/* 底部虚线及步骤条外壳 */
+.auth-steps-wrapper {
+    margin-top: 32px;
+    border-top: 1px dashed #e5e7eb;
+    padding-top: 20px;
+}
+
+.step-title {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+.step-title.active {
+    color: #1f2937;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   📱 2. 极致移动端自适应 (彻底隐藏左侧，右侧100%全屏)
+   ========================================================================== */
+@media (max-width: 767px) {
+    .auth-left-banner {
+        display: none !important;
+    }
+
+    .auth-page-container {
+        flex-direction: column !important;
+        height: calc(100vh - 68px - 48px) !important;
+    }
+
+    .auth-right-form-wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        flex: 1 !important;
+        padding: 24px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        background-color: #ffffff !important;
+    }
+
+    .form-inner-block {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}

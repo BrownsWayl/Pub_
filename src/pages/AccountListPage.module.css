@@ -1,0 +1,270 @@
+/* ==========================================================================
+   📊 极致打磨：AccountListPage.module.css (斑马纹、Hover呼吸、胶囊分页、+号魔改)
+   ========================================================================== */
+
+/* --- 🪐 1. 全局底色与通用页面级标题 --- */
+.pageGlobalBackground {
+    background-color: #f1f5f9 !important;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tableTitleArea {
+    padding: 0 0 16px 0;
+}
+
+.tableTitleArea h2 {
+    margin: 0 !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    display: inline-flex !important;
+    align-items: center;
+}
+
+.tableTitleArea h2::before {
+    content: "" !important;
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: linear-gradient(180deg, #00bba7 0%, #00a680 100%) !important;
+    border-radius: 2px;
+}
+
+/* --- 📊 2. 表格体一体化包裹大卡片 --- */
+.modernFancyTableWrapper {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid #e2e8f0 !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 清空 Antd 默认背景，统一透出大框白底 */
+.modernFancyTableWrapper :global(.ant-table) {
+    background: transparent !important;
+}
+
+/* 表头轻量清爽化 */
+.modernFancyTableWrapper :global(.ant-table-thead)>tr>th {
+    background-color: #fafbfc !important;
+    color: #475569 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 16px 12px !important;
+}
+
+/* --- ✨ 3. 网页 PC 端真·极简斑马纹与柔和呼吸 Hover 特效 --- */
+.modernFancyRow {
+    cursor: pointer !important;
+    position: relative;
+    /* 🚀 使用贝塞尔阻尼曲线，让回弹反馈优雅高档 */
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 斑马纹交替单元格（奇数白，偶数轻量灰） */
+.modernFancyRow:nth-child(odd)>td {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    padding: 16px 12px !important;
+    transition: background-color 0.25s ease !important;
+}
+
+.modernFancyRow:nth-child(even)>td {
+    background-color: #f8fafc !important;
+    /* 雅致 Slate-50 */
+    border-bottom: 1px solid #f1f5f9 !important;
+    padding: 16px 12px !important;
+    transition: background-color 0.25s ease !important;
+}
+
+/* 🚀【PC 端 3D 浮雕微光悬浮】抬起 1.5px 并加上发散淡青色阴影 */
+.modernFancyRow:hover {
+    transform: translateY(-1.5px) !important;
+    z-index: 10 !important;
+}
+
+.modernFancyRow:hover>td {
+    background: linear-gradient(90deg, rgba(0, 187, 167, 0.04) 0%, rgba(248, 250, 252, 0.9) 100%) !important;
+    border-bottom-color: #cbd5e1 !important;
+    box-shadow: 0 4px 12px -2px rgba(0, 187, 167, 0.08) !important;
+}
+
+/* 悬浮时，账号链接色彩深度唤醒 */
+.modernFancyRow:hover .accountHighlight {
+    color: #00bba7 !important;
+    text-shadow: 0 0 1px rgba(0, 187, 167, 0.2);
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* 🚀【魔改移动端 + 号】一比一折叠小圆圈还原 */
+.modernFancyTableWrapper :global(.ant-table-row-expand-icon) {
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    color: #64748b !important;
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    transition: all 0.2s ease !important;
+}
+
+.modernFancyTableWrapper :global(.ant-table-row-expand-icon:hover) {
+    border-color: #00bba7 !important;
+    color: #00bba7 !important;
+}
+
+
+/* ==========================================================================
+   🚀 4. 【底部分页栏：双端左右靠齐，合并一比一图2胶囊页码】
+   ========================================================================== */
+.customPaginationBar {
+    display: flex !important;
+    justify-content: space-between !important;
+    /* 双端对齐 */
+    align-items: center !important;
+    padding: 18px 24px !important;
+    border-top: 1px solid #f1f5f9 !important;
+    background-color: #ffffff !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.paginationLeftInfo {
+    font-size: 13px !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+}
+
+.paginationRightControls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+}
+
+.pageSizeSelectArea {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+/* 完美魔改右下角原生的条数选择下拉框 */
+.nativePageSizeSelectorMini {
+    border: 1px solid #cbd5e1 !important;
+    background: #f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='14' height='14' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 6px center !important;
+    border-radius: 6px !important;
+    height: 28px !important;
+    padding: 0 24px 0 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    outline: none !important;
+    cursor: pointer !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+}
+
+.nativePageSizeSelectorMini:hover {
+    border-color: #00bba7 !important;
+    background-color: #ffffff !important;
+}
+
+/* 🚀 Antd Pagination 扁平化圆角胶囊美化浸染 🚀 */
+.paginationRightControls :global(.ant-pagination-item),
+.paginationRightControls :global(.ant-pagination-prev),
+.paginationRightControls :global(.ant-pagination-next) {
+    border: none !important;
+    background: transparent !important;
+    border-radius: 8px !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+}
+
+/* 上一页/下一页胶囊底衬 */
+.paginationRightControls :global(.ant-pagination-prev .ant-pagination-item-link),
+.paginationRightControls :global(.ant-pagination-next .ant-pagination-item-link) {
+    background-color: #f3f4f6 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    color: #374151 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+}
+
+.paginationRightControls :global(.ant-pagination-prev:not(.ant-pagination-disabled):hover .ant-pagination-item-link),
+.paginationRightControls :global(.ant-pagination-next:not(.ant-pagination-disabled):hover .ant-pagination-item-link) {
+    background-color: #e5e7eb !important;
+}
+
+/* 激活态主题绿胶囊（一比一图2） */
+.paginationRightControls :global(.ant-pagination-item-active) {
+    background-color: #00bba7 !important;
+    box-shadow: none !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item-active a) {
+    color: #ffffff !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item a) {
+    color: #1f2937 !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item:not(.ant-pagination-item-active):hover) {
+    background-color: #f3f4f6 !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item:not(.ant-pagination-item-active):hover a) {
+    color: #00bba7 !important;
+}
+
+/* 禁用态控制 */
+.paginationRightControls :global(.ant-pagination-disabled .ant-pagination-item-link) {
+    background-color: #f9fafb !important;
+    color: #d1d5db !important;
+    cursor: not-allowed !important;
+}
+
+
+/* ==========================================================================
+   📱 5. 【移动端自适应微调】
+   ========================================================================== */
+@media (max-width: 767px) {
+    .modernFancyTableWrapper {
+        margin: 10px !important;
+        width: calc(100% - 20px) !important;
+    }
+
+    /* 移动端依然强制水平一行排开，确保文字和分页胶囊分居左右两端 */
+    .customPaginationBar {
+        padding: 12px 16px !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    .paginationLeftInfo {
+        font-size: 11px !important;
+        white-space: nowrap !important;
+    }
+}

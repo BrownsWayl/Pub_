@@ -1,0 +1,504 @@
+/* ==========================================================================
+   📌 【1. 全局基础锁定与主外壳】(全站通用)
+   ========================================================================== */
+html,
+body,
+#root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  height: 100%;
+  overflow: hidden !important;
+  position: fixed !important;
+}
+
+/* ==========================================================================
+   💻 【2. 网页 PC 端官网前台专用顶栏】
+   ========================================================================== */
+@media (min-width: 768px) {
+  .pc-global-header.ant-layout-header {
+    height: 68px !important;
+    line-height: normal !important;
+    padding: 0 40px !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    border-bottom: 1px solid #1f2937 !important;
+  }
+
+  .pc-global-header .pc-nav-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    height: 100% !important;
+    margin-left: 12% !important;
+    flex: 1 !important;
+  }
+
+  .pc-global-header .pc-nav-item {
+    height: 100% !important;
+    padding: 0 28px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: transparent !important;
+  }
+
+  .pc-global-header .pc-nav-item .menu-label-text,
+  .pc-global-header .pc-nav-item .pc-only-dropdown-trigger {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: color 0.2s ease !important;
+  }
+
+  .pc-global-header .pc-nav-item .nav-arrow {
+    font-size: 12px !important;
+    color: #9ca3af !important;
+    margin-left: 6px !important;
+    display: inline-block !important;
+    transition: color 0.2s ease, transform 0.25s ease-in-out !important;
+    transform: rotate(0deg);
+  }
+
+  .pc-global-header .pc-nav-item:hover .menu-label-text,
+  .pc-global-header .pc-nav-item:hover .pc-only-dropdown-trigger,
+  .pc-global-header .pc-nav-item.active .menu-label-text {
+    color: #9ca3af !important;
+  }
+
+  .pc-global-header .pc-nav-item:hover .nav-arrow,
+  .pc-global-header .pc-nav-item.active .nav-arrow {
+    color: #ffffff !important;
+    transform: rotate(180deg) !important;
+  }
+
+  .pc-global-header .ant-space {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    height: 100% !important;
+    margin-left: auto !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .hover-item {
+    transition: background-color 0.2s ease !important;
+    background-color: transparent;
+  }
+
+  .hover-item:hover {
+    background-color: rgba(0, 0, 0, 0.04) !important;
+  }
+}
+
+/* ==========================================================================
+   📱 【3. 移动端前台专用导航菜单样式】
+   ========================================================================== */
+.mobile-dark-menu.ant-menu-dark .ant-menu-item-selected,
+.mobile-dark-menu.ant-menu-dark .ant-menu-submenu-title:active,
+.mobile-dark-menu.ant-menu-dark .ant-menu-item:active,
+.mobile-dark-menu.ant-menu-dark .ant-menu-sub {
+  background-color: transparent !important;
+}
+
+.mobile-dark-menu.ant-menu-dark .ant-menu-item,
+.mobile-dark-menu.ant-menu-dark .ant-menu-submenu-title,
+.mobile-dark-menu.ant-menu-dark .ant-menu-sub .ant-menu-item {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  background-color: transparent !important;
+  padding-left: 16px !important;
+}
+
+.mobile-dark-menu.ant-menu-dark .ant-menu-submenu-arrow {
+  display: none !important;
+}
+
+.mobile-dark-menu.ant-menu-dark .ant-menu-submenu-title::after {
+  content: "▼" !important;
+  font-size: 12px !important;
+  color: #9ca3af !important;
+  position: absolute !important;
+  right: 20px !important;
+  top: 50% !important;
+  transform: translateY(-50%) rotate(0deg) !important;
+  transition: transform 0.25s ease-in-out, color 0.2s ease !important;
+}
+
+.mobile-dark-menu.ant-menu-dark .ant-menu-submenu-open .ant-menu-submenu-title::after {
+  color: #ffffff !important;
+  transform: translateY(-50%) rotate(180deg) !important;
+}
+
+.mobile-dark-menu.ant-menu-dark .ant-menu-item-selected,
+.mobile-dark-menu.ant-menu-dark .ant-menu-item:active,
+.mobile-dark-menu.ant-menu-dark .ant-menu-sub .ant-menu-item-selected,
+.mobile-dark-menu.ant-menu-dark .ant-menu-submenu-selected .ant-menu-submenu-title {
+  color: #9ca3af !important;
+}
+
+.mobile-dark-menu.ant-menu-dark .ant-menu-submenu-selected .ant-menu-submenu-title::after {
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   🔘 【4. 顶部通用按钮及基础动效组件】
+   ========================================================================== */
+.nav-login-btn {
+  transition: color 0.2s ease !important;
+}
+
+.nav-login-btn:hover {
+  color: #9ca3af !important;
+  background: transparent !important;
+}
+
+.nav-register-btn {
+  transition: all 0.2s ease-in-out !important;
+}
+
+.nav-register-btn:hover {
+  background-color: #ef4444 !important;
+  color: #ffffff !important;
+  filter: brightness(0.7) !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25) !important;
+}
+
+.nav-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease !important;
+}
+
+.pc-only-dropdown-trigger:hover .nav-arrow,
+.ant-menu-item-open .nav-arrow {
+  transform: rotate(180deg) !important;
+}
+
+.advantage-card {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.advantage-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1), 0 4px 16px -8px rgba(0, 0, 0, 0.05) !important;
+  background: #ffffff !important;
+}
+
+.content-row-banner {
+  transition: filter 0.25s ease !important;
+}
+
+.auth-steps-wrapper .ant-steps-item-title {
+  white-space: nowrap !important;
+}
+
+.auth-steps-wrapper .ant-steps-dot .ant-steps-item-icon {
+  margin-left: 0 !important;
+}
+
+@media (max-width: 480px) {
+  .auth-steps-wrapper .ant-steps {
+    padding: 0 4px !important;
+  }
+}
+
+/* ==========================================================================
+   📱 【5. 控制台框架自适应与双端响应布局交接】
+   ========================================================================== */
+.m-nav-item {
+  width: 100% !important;
+  height: 56px !important;
+  padding: 0 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  font-size: 16px !important;
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  cursor: pointer !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  transition: all 0.15s ease !important;
+}
+
+.m-nav-item:hover,
+.m-nav-item:active {
+  background-color: #f9fafb !important;
+  color: #111827 !important;
+}
+
+.m-nav-item.active {
+  background-color: #f9fafb !important;
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+
+.m-nav-item.active::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 4px !important;
+  background-color: #ef4444 !important;
+}
+
+.m-nav-item .menu-icon {
+  font-size: 18px !important;
+  color: #6b7280 !important;
+}
+
+.m-nav-item:hover .menu-icon,
+.m-nav-item.active .menu-icon {
+  color: #111827 !important;
+}
+
+@media (min-width: 768px) {
+  .dashboard-responsive-layout {
+    flex-direction: row !important;
+  }
+
+  .pc-dashboard-sider {
+    display: block !important;
+  }
+
+  .mobile-dashboard-header {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .dashboard-responsive-layout {
+    flex-direction: column !important;
+  }
+
+  .pc-dashboard-sider {
+    display: none !important;
+  }
+
+  .mobile-dashboard-header {
+    display: block !important;
+  }
+
+  .nav-register-btn {
+    height: 32px !important;
+    line-height: 32px !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+}
+
+/* ==========================================================================
+   🎯 【6. 控制台 DashboardHeader 专属卡片与下拉菜单样式】
+   ========================================================================== */
+.custom-dashboard-header {
+  height: 60px !important;
+  min-height: 60px !important;
+  max-height: 60px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+.header-left-tab-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.header-collapse-btn {
+  width: 54px !important;
+  height: 60px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  color: #475569 !important;
+  font-size: 20px !important;
+  border: none !important;
+  background-color: #ffffff !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.header-collapse-btn:hover {
+  background-color: #f8fafc !important;
+}
+
+.header-nav-tab-item {
+  width: 96px !important;
+  height: 60px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  border: none !important;
+  background-color: transparent !important;
+  color: #64748b !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
+.header-nav-tab-item .tab-icon {
+  font-size: 20px !important;
+  line-height: 1 !important;
+  margin-bottom: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #475569 !important;
+}
+
+.header-nav-tab-item .tab-label {
+  font-size: 12px !important;
+  line-height: 1 !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  color: #64748b !important;
+}
+
+.header-nav-tab-item.active,
+.header-nav-tab-item:hover {
+  background-color: #243b55 !important;
+}
+
+.header-nav-tab-item.active .tab-icon,
+.header-nav-tab-item:hover .tab-icon,
+.header-nav-tab-item.active .tab-label,
+.header-nav-tab-item:hover .tab-label {
+  color: #ffffff !important;
+}
+
+.ant-dropdown-menu {
+  padding: 6px 0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #f1f5f9 !important;
+}
+
+.ant-dropdown-menu-item {
+  padding: 10px 20px !important;
+  font-size: 13px !important;
+  color: #334155 !important;
+}
+
+.ant-dropdown-menu-item .anticon {
+  margin-right: 10px !important;
+  color: #475569 !important;
+}
+
+.ant-dropdown-menu-item-danger {
+  color: #ef4444 !important;
+}
+
+.ant-dropdown-menu-item-danger .anticon {
+  color: #ef4444 !important;
+}
+
+@media (max-width: 767px) {
+  .ant-dropdown {
+    max-width: 180px !important;
+  }
+
+  .ant-dropdown-menu-item {
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* ==========================================================================
+   🎯 【7. 彻底消灭多余滚动条 & 修正 Content 容器】
+   ========================================================================== */
+
+.ant-layout {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+  background-color: #f3f4f6 !important;
+}
+
+.ant-layout-content,
+.dashboard-content-area {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: #f3f4f6 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  flex: 1 1 0% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.trade-history-wrapper,
+.profile-page-wrapper,
+.security-page-wrapper {
+  padding: 20px !important;
+  background-color: #f3f4f6 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: auto !important;
+}
+
+@media (max-width: 767px) {
+
+  .trade-history-wrapper,
+  .profile-page-wrapper,
+  .security-page-wrapper {
+    padding: 12px !important;
+  }
+}
+
+/* ==========================================================================
+   🎨 【8. 深藏青侧边栏专属美化】
+   ========================================================================== */
+
+.pc-dashboard-sider .ant-menu-dark {
+  background-color: #1e293b !important;
+}
+
+.pc-dashboard-sider .ant-menu-dark .ant-menu-item {
+  color: #94a3b8 !important;
+  font-weight: 500;
+  margin: 4px 8px !important;
+  width: calc(100% - 16px) !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover 悬停状态：深蓝底色 */
+.pc-dashboard-sider .ant-menu-dark .ant-menu-item:hover {
+  color: #ffffff !important;
+  background-color: #334155 !important;
+}
+
+/* Selected 激活项：温暖琥珀金，与品牌 Accent Color 完美呼应 */
+.pc-dashboard-sider .ant-menu-dark .ant-menu-item-selected {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3) !important;
+}
+
+.pc-dashboard-sider .ant-menu-dark .ant-menu-item-selected .anticon {
+  color: #ffffff !important;
+}

@@ -1,0 +1,374 @@
+/* ==========================================================================
+   📊 持仓页面专属样式表：PositionPage.module.css (一比一完美统一版)
+   ========================================================================== */
+
+.pageGlobalBackground {
+    background-color: #f1f5f9 !important;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- 🪐 1. 顶部标题与面包屑 --- */
+.tableTitleArea {
+    padding: 16px 0 0 10px;
+}
+
+.tableTitleArea h2 {
+    margin: 0 !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    display: inline-flex !important;
+    align-items: center;
+}
+
+.tableTitleArea h2::before {
+    content: "" !important;
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: linear-gradient(180deg, #00bba7 0%, #00a680 100%) !important;
+    border-radius: 2px;
+}
+
+.breadcrumb {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.breadcrumbActive {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* --- 🔍 2. 顶栏筛选自适应容器 --- */
+.compactForm {
+    margin: 0 !important;
+}
+
+.inputLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    vertical-align: middle;
+}
+
+.filterResponsiveContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+}
+
+.filterItem {
+    flex: 1;
+    min-width: 150px;
+}
+
+.filterButtons {
+    display: flex;
+    gap: 8px;
+}
+
+/* --- 📊 3. 表格整体包装器与大厂斑马纹 --- */
+.modernFancyTableWrapper {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid #e2e8f0 !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tableHeaderBar {
+    padding: 16px 20px !important;
+    background-color: #fafbfc !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    font-size: 13px;
+    color: #475569;
+    font-weight: 500;
+}
+
+/* 强制重写 Antd 表头 */
+.modernFancyTableWrapper :global(.ant-table-thead)>tr>th {
+    background-color: #fafbfc !important;
+    color: #475569 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 16px 12px !important;
+}
+
+/* 斑马纹交替单元格底色与贝塞尔平滑过渡（先快后慢阻尼反馈） */
+.modernFancyRow {
+    cursor: pointer !important;
+    position: relative;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.modernFancyRow:nth-child(odd)>td {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    padding: 14px 12px !important;
+    transition: background-color 0.25s ease !important;
+}
+
+.modernFancyRow:nth-child(even)>td {
+    background-color: #f8fafc !important;
+    /* 优雅交替 Slate-50 底色 */
+    border-bottom: 1px solid #f1f5f9 !important;
+    padding: 14px 12px !important;
+    transition: background-color 0.25s ease !important;
+}
+
+/* 🚀【PC 端 3D 微浮雕悬浮】：抬起 1.5px 并展现发散性淡青色投影 */
+.modernFancyRow:hover {
+    transform: translateY(-1.5px) !important;
+    z-index: 10 !important;
+}
+
+.modernFancyRow:hover>td {
+    background: linear-gradient(90deg, rgba(0, 187, 167, 0.04) 0%, rgba(248, 250, 252, 0.9) 100%) !important;
+    border-bottom-color: #cbd5e1 !important;
+    box-shadow: 0 4px 12px -2px rgba(0, 187, 167, 0.08) !important;
+}
+
+/* 悬浮时，交易账号链接色彩深度唤醒 */
+.modernFancyRow:hover span[style*="pointer"],
+.modernFancyRow:hover a {
+    color: #00bba7 !important;
+    text-shadow: 0 0 1px rgba(0, 187, 167, 0.2);
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* 🚀【魔改移动端 + 号】一比一折叠小圆圈还原 */
+.modernFancyTableWrapper :global(.ant-table-row-expand-icon) {
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    color: #64748b !important;
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    transition: all 0.2s ease !important;
+}
+
+.modernFancyTableWrapper :global(.ant-table-row-expand-icon:hover) {
+    border-color: #00bba7 !important;
+    color: #00bba7 !important;
+}
+
+/* --- 🎛️ 4. 分页及左右两端对齐 --- */
+.customPaginationBar {
+    display: flex !important;
+    justify-content: space-between !important;
+    /* 两端对齐关键 */
+    align-items: center !important;
+    padding: 18px 24px !important;
+    border-top: 1px solid #f1f5f9 !important;
+    background-color: #ffffff !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.paginationLeftWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.paginationLeftInfo {
+    font-size: 13px !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+}
+
+/* 合计汇总多维度指标排版 */
+.totalSumArea {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.sumHighlight {
+    color: #16a34a !important;
+    /* 绿色文字高亮 */
+    font-weight: 700;
+}
+
+.profitHighlight {
+    font-weight: 700;
+}
+
+.paginationRightControls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    /* 维持右下角下拉框与页码之间的呼吸距离 */
+}
+
+.pageSizeSelectArea {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+/* 🚀 100% 还原图片 2：精致圆角、浅色边框与淡雅灰色小弯折细线三角 */
+.nativePageSizeSelectorMini {
+    /* 1. 强制屏蔽不同系统的原生默认箭头样式 */
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+
+    /* 2. 基础物理尺寸与框线 */
+    border: 1px solid #cbd5e1 !important;
+    /* 浅灰色边框 */
+    background-color: #f8fafc !important;
+    /* 淡淡的雅致白灰色底 */
+    border-radius: 6px !important;
+    /* 柔和圆角 */
+    height: 28px !important;
+    line-height: 26px !important;
+    padding: 0 24px 0 8px !important;
+    /* 留出右侧空间定位自定义箭头 */
+
+    /* 3. 字体设置 */
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    outline: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease-in-out !important;
+
+    /* 4. 自定义淡雅灰细折线小三角 (精心绘制的 SVG 背景) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 6px center !important;
+    background-size: 12px !important;
+}
+
+/* 悬浮唤醒为主题绿与呼吸淡投影 */
+.nativePageSizeSelectorMini:hover {
+    border-color: #00bba7 !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 2px rgba(0, 187, 167, 0.08) !important;
+}
+
+.nativePageSizeSelectorMini:focus {
+    border-color: #00bba7 !important;
+    box-shadow: 0 0 0 2px rgba(0, 187, 167, 0.15) !important;
+}
+
+/* 🚀 Antd Pagination 按钮扁平化圆角胶囊美化浸染 🚀 */
+.paginationRightControls :global(.ant-pagination-item),
+.paginationRightControls :global(.ant-pagination-prev),
+.paginationRightControls :global(.ant-pagination-next) {
+    border: none !important;
+    background: transparent !important;
+    border-radius: 8px !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+}
+
+/* 上一页/下一页胶囊底衬 */
+.paginationRightControls :global(.ant-pagination-prev .ant-pagination-item-link),
+.paginationRightControls :global(.ant-pagination-next .ant-pagination-item-link) {
+    background-color: #f3f4f6 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    color: #374151 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+}
+
+.paginationRightControls :global(.ant-pagination-prev:not(.ant-pagination-disabled):hover .ant-pagination-item-link),
+.paginationRightControls :global(.ant-pagination-next:not(.ant-pagination-disabled):hover .ant-pagination-item-link) {
+    background-color: #e5e7eb !important;
+}
+
+/* 激活态主题绿胶囊 */
+.paginationRightControls :global(.ant-pagination-item-active) {
+    background-color: #00bba7 !important;
+    box-shadow: none !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item-active a) {
+    color: #ffffff !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item a) {
+    color: #1f2937 !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item:not(.ant-pagination-item-active):hover) {
+    background-color: #f3f4f6 !important;
+}
+
+.paginationRightControls :global(.ant-pagination-item:not(.ant-pagination-item-active):hover a) {
+    color: #00bba7 !important;
+}
+
+.paginationRightControls :global(.ant-pagination-disabled .ant-pagination-item-link) {
+    background-color: #f9fafb !important;
+    color: #d1d5db !important;
+    cursor: not-allowed !important;
+}
+
+/* --- 📱 5. 极致移动端自适应 --- */
+@media (max-width: 767px) {
+    .filterResponsiveContainer {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    .filterItem,
+    .filterButtons {
+        width: 100% !important;
+    }
+
+    .modernFancyTableWrapper {
+        margin: 10px !important;
+        width: calc(100% - 20px) !important;
+    }
+
+    /* 移动端依然强制水平一行排开，确保文字和分页胶囊分居左右两端 */
+    .customPaginationBar {
+        padding: 12px 16px !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    .paginationLeftWrapper {
+        align-items: flex-start;
+    }
+
+    .totalSumArea {
+        font-size: 11px;
+        /* 移动端字号收敛防止重叠 */
+    }
+
+    .paginationLeftInfo {
+        font-size: 11px !important;
+    }
+}

@@ -13,7 +13,7 @@ body,
 }
 
 /* ==========================================================================
-   💻 【2. 网页 PC 端官网前台专用顶栏】
+   💻 【2. 网页 PC 端官网前台专用顶栏】(彻底隔离，仅作用于 .pc-global-header)
    ========================================================================== */
 @media (min-width: 768px) {
   .pc-global-header.ant-layout-header {
@@ -286,6 +286,12 @@ body,
     display: block !important;
   }
 
+  .dashboard-content-area {
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
   .nav-register-btn {
     height: 32px !important;
     line-height: 32px !important;
@@ -299,6 +305,8 @@ body,
 /* ==========================================================================
    🎯 【6. 控制台 DashboardHeader 专属卡片与下拉菜单样式】
    ========================================================================== */
+
+/* Header 根节点（底部保留一条极细的分界线） */
 .custom-dashboard-header {
   height: 60px !important;
   min-height: 60px !important;
@@ -315,6 +323,7 @@ body,
   width: 100% !important;
 }
 
+/* 左侧 Tab 选项卡包装容器 */
 .header-left-tab-wrapper {
   display: flex !important;
   align-items: center !important;
@@ -323,6 +332,7 @@ body,
   padding: 0 !important;
 }
 
+/* 左侧折叠按钮（无竖边框） */
 .header-collapse-btn {
   width: 54px !important;
   height: 60px !important;
@@ -342,6 +352,7 @@ body,
   background-color: #f8fafc !important;
 }
 
+/* 块状 Tab 菜单项（无竖边框，60px 撑满高度） */
 .header-nav-tab-item {
   width: 96px !important;
   height: 60px !important;
@@ -377,6 +388,7 @@ body,
   color: #64748b !important;
 }
 
+/* 选中 (Active) 或 悬停 (Hover) 状态：深蓝底白字 */
 .header-nav-tab-item.active,
 .header-nav-tab-item:hover {
   background-color: #243b55 !important;
@@ -389,6 +401,7 @@ body,
   color: #ffffff !important;
 }
 
+/* 用户下拉菜单浮层美化 */
 .ant-dropdown-menu {
   padding: 6px 0 !important;
   border-radius: 8px !important;
@@ -407,6 +420,7 @@ body,
   color: #475569 !important;
 }
 
+/* 退出项红字提醒 */
 .ant-dropdown-menu-item-danger {
   color: #ef4444 !important;
 }
@@ -415,6 +429,7 @@ body,
   color: #ef4444 !important;
 }
 
+/* 📱 下拉菜单移动端宽度控制 */
 @media (max-width: 767px) {
   .ant-dropdown {
     max-width: 180px !important;
@@ -424,81 +439,4 @@ body,
     padding: 12px 16px !important;
     font-size: 14px !important;
   }
-}
-
-/* ==========================================================================
-   🎯 【7. 彻底消灭多余滚动条 & 修正 Content 容器】
-   ========================================================================== */
-
-.ant-layout {
-  height: 100vh !important;
-  max-height: 100vh !important;
-  overflow: hidden !important;
-  background-color: #f3f4f6 !important;
-}
-
-.ant-layout-content,
-.dashboard-content-area {
-  padding: 0 !important;
-  margin: 0 !important;
-  background-color: #f3f4f6 !important;
-  box-sizing: border-box !important;
-  width: 100% !important;
-  flex: 1 1 0% !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-}
-
-.trade-history-wrapper,
-.profile-page-wrapper,
-.security-page-wrapper {
-  padding: 20px !important;
-  background-color: #f3f4f6 !important;
-  box-sizing: border-box !important;
-  width: 100% !important;
-  min-height: auto !important;
-}
-
-@media (max-width: 767px) {
-
-  .trade-history-wrapper,
-  .profile-page-wrapper,
-  .security-page-wrapper {
-    padding: 12px !important;
-  }
-}
-
-/* ==========================================================================
-   🎨 【8. 深藏青侧边栏专属美化】
-   ========================================================================== */
-
-.pc-dashboard-sider .ant-menu-dark {
-  background-color: #1e293b !important;
-}
-
-.pc-dashboard-sider .ant-menu-dark .ant-menu-item {
-  color: #94a3b8 !important;
-  font-weight: 500;
-  margin: 4px 8px !important;
-  width: calc(100% - 16px) !important;
-  border-radius: 6px !important;
-  transition: all 0.2s ease !important;
-}
-
-/* Hover 悬停状态：深蓝底色 */
-.pc-dashboard-sider .ant-menu-dark .ant-menu-item:hover {
-  color: #ffffff !important;
-  background-color: #334155 !important;
-}
-
-/* Selected 激活项：温暖琥珀金，与品牌 Accent Color 完美呼应 */
-.pc-dashboard-sider .ant-menu-dark .ant-menu-item-selected {
-  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
-  color: #ffffff !important;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3) !important;
-}
-
-.pc-dashboard-sider .ant-menu-dark .ant-menu-item-selected .anticon {
-  color: #ffffff !important;
 }

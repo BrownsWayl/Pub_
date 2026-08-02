@@ -26,6 +26,9 @@ const { useBreakpoint } = Grid;
 export default function App() {
   const screens = useBreakpoint();
   const isMobile = screens.md === false;
+  // 假设当前用户的身份角色（可从系统 Context 或 LocalStorage 中获取）
+  // 'special_user' 代表特殊用户，'normal' 代表普通用户
+  const userRole = 'special_user';
 
   return (
     <Router>
@@ -37,15 +40,14 @@ export default function App() {
         <Route path="/useragreement" element={<UserAgreement />} />
 
         {/* 👑 后台控制台整体路由（左右穿透式布局结构） */}
-        <Route path="/dashboard" element={<UserDashboard isMobile={isMobile} />}>
-          <Route index element={<Navigate to="/dashboard/broker" replace />} />
-          <Route path="broker" element={<BrokerPage />} />
-          <Route path="trader" element={<TraderPage />} />
+        <Route path="/dashboard" element={<UserDashboard isMobile={isMobile} userRole={userRole} />}>
+          <Route index element={<Navigate to="/dashboard/accountlist" />} />
+
           <Route path="accountlist" element={<AccountListPage />} />
           <Route path="fundrecords" element={<FundRecordsPage />} />
           <Route path="position" element={<PositionPage />} />
           <Route path="tradehistory" element={<TradeHistoryPage />} />
-          <Route path="commissionreport" element={<CommissionReportPage />} />
+
           <Route path="riskassessment" element={<RiskAssessment />} />
           <Route path="deposit" element={<DepositPage />} />
           <Route path="cashout" element={<CashOut />} />
@@ -53,6 +55,14 @@ export default function App() {
           <Route path="transfer" element={<Transfer />} />
           <Route path='profile' element={<Profile />} />
           <Route path='security' element={<Security />} />
+        </Route>
+        <Route path="/dashboard" element={<UserDashboard isMobile={false} userRole={userRole} />}>
+          <Route path="broker" element={<BrokerPage />} />
+          <Route path="trader" element={<TraderPage />} />
+          <Route path="commissionreport" element={<CommissionReportPage />} />
+          <Route path='profile' element={<Profile />} />
+          <Route path='security' element={<Security />} />
+          <Route path="bankcard" element={<BankCard />} />
 
         </Route>
       </Routes>

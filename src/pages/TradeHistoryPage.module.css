@@ -1,17 +1,25 @@
 /* ==========================================================================
-   📊 交易历史专属样式表：tradehistory.module.css (斑马纹、Hover、右下角双端对齐)
+   📊 交易历史专属样式表：tradehistorypage.module.css
    ========================================================================== */
 
+/* --- 🪐 1. 全局容器与响应式 Padding --- */
 .pageGlobalBackground {
     background-color: #f1f5f9 !important;
-    min-height: 100vh;
+    /* 遵循父级 Shell 底色 */
+    padding: 20px 24px;
+    /* 标准 PC 端内边距 */
     width: 100%;
+    min-height: 100% !important;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
 }
 
-/* --- 🪐 1. 顶部标题与面包屑 --- */
+/* --- 🪐 2. 顶部标题与面包屑（绝对左对齐） --- */
 .tableTitleArea {
-    padding: 16px 0 0 10px;
+    padding: 0;
+    /* 清除额外缩进，与卡片边框对齐 */
+    margin-bottom: 4px;
 }
 
 .tableTitleArea h2 {
@@ -43,7 +51,7 @@
     font-weight: 600;
 }
 
-/* --- 🔍 2. 顶栏筛选自适应容器 --- */
+/* --- 🔍 3. 顶栏筛选自适应容器 --- */
 .compactForm {
     margin: 0 !important;
 }
@@ -73,7 +81,7 @@
     gap: 8px;
 }
 
-/* --- 📊 3. 表格整体包装器与大厂斑马纹 --- */
+/* --- 📊 4. 表格整体包装器与斑马纹高阶 Hover 特效 --- */
 .modernFancyTableWrapper {
     background: #ffffff !important;
     border-radius: 12px !important;
@@ -94,7 +102,7 @@
     padding: 16px 12px !important;
 }
 
-/* 斑马纹交替单元格底色与贝塞尔平滑过渡 */
+/* 斑马纹交替底色与平滑贝塞尔过渡 */
 .modernFancyRow {
     cursor: pointer !important;
     position: relative;
@@ -111,13 +119,12 @@
 
 .modernFancyRow:nth-child(even)>td {
     background-color: #f8fafc !important;
-    /* 优雅交替 Slate-50 底色 */
     border-bottom: 1px solid #f1f5f9 !important;
     padding: 14px 12px !important;
     transition: background-color 0.25s ease !important;
 }
 
-/* 🚀【PC 端 3D 微浮雕悬浮】：抬起 1.5px 并展现发散性淡青色投影 */
+/* PC 端 3D 微浮雕悬浮特效 */
 .modernFancyRow:hover {
     transform: translateY(-1.5px) !important;
     z-index: 10 !important;
@@ -129,7 +136,6 @@
     box-shadow: 0 4px 12px -2px rgba(0, 187, 167, 0.08) !important;
 }
 
-/* 悬浮时，交易账号等高亮色彩唤醒 */
 .modernFancyRow:hover span[style*="pointer"],
 .modernFancyRow:hover a {
     color: #00bba7 !important;
@@ -137,7 +143,7 @@
     transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
-/* 🚀【魔改移动端 + 号】一比一折叠小圆圈还原 */
+/* 魔改移动端折叠小圆圈图标 */
 .modernFancyTableWrapper :global(.ant-table-row-expand-icon) {
     border: 1px solid #cbd5e1 !important;
     background: #ffffff !important;
@@ -159,11 +165,10 @@
     color: #00bba7 !important;
 }
 
-/* --- 🎛️ 4. 分页及左右两端对齐 --- */
+/* --- 🎛️ 5. 分页及左右两端对齐 --- */
 .customPaginationBar {
     display: flex !important;
     justify-content: space-between !important;
-    /* 两端对齐关键 */
     align-items: center !important;
     padding: 18px 24px !important;
     border-top: 1px solid #f1f5f9 !important;
@@ -184,7 +189,6 @@
     font-weight: 500 !important;
 }
 
-/* 合计汇总多维度指标排版 */
 .totalSumArea {
     font-size: 13px;
     font-weight: 600;
@@ -193,7 +197,6 @@
 
 .sumHighlight {
     color: #16a34a !important;
-    /* 绿色文字高亮 */
     font-weight: 700;
 }
 
@@ -213,7 +216,6 @@
     gap: 6px !important;
 }
 
-/* 完美魔改右下角原生的条数选择下拉框 */
 .nativePageSizeSelectorMini {
     border: 1px solid #cbd5e1 !important;
     background: #f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='14' height='14' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 6px center !important;
@@ -234,7 +236,7 @@
     background-color: #ffffff !important;
 }
 
-/* 🚀 Antd Pagination 按钮扁平化圆角胶囊美化 🚀 */
+/* Antd Pagination 按钮胶囊美化 */
 .paginationRightControls :global(.ant-pagination-item),
 .paginationRightControls :global(.ant-pagination-prev),
 .paginationRightControls :global(.ant-pagination-next) {
@@ -252,7 +254,6 @@
     transition: all 0.2s ease !important;
 }
 
-/* 上一页/下一页胶囊底衬 */
 .paginationRightControls :global(.ant-pagination-prev .ant-pagination-item-link),
 .paginationRightControls :global(.ant-pagination-next .ant-pagination-item-link) {
     background-color: #f3f4f6 !important;
@@ -271,7 +272,6 @@
     background-color: #e5e7eb !important;
 }
 
-/* 激活态主题绿胶囊 */
 .paginationRightControls :global(.ant-pagination-item-active) {
     background-color: #00bba7 !important;
     box-shadow: none !important;
@@ -299,8 +299,13 @@
     cursor: not-allowed !important;
 }
 
-/* --- 📱 5. 极致移动端自适应 --- */
+/* --- 📱 6. 极致移动端自适应 --- */
 @media (max-width: 767px) {
+    .pageGlobalBackground {
+        padding: 12px;
+        /* 移动端间距 */
+    }
+
     .filterResponsiveContainer {
         flex-direction: column !important;
         gap: 12px !important;
@@ -312,11 +317,11 @@
     }
 
     .modernFancyTableWrapper {
-        margin: 10px !important;
-        width: calc(100% - 20px) !important;
+        margin: 0 !important;
+        /* 清除挤压 margin */
+        width: 100% !important;
     }
 
-    /* 移动端依然强制水平一行排开，确保文字和分页胶囊分居左右两端 */
     .customPaginationBar {
         padding: 12px 16px !important;
         flex-direction: row !important;
@@ -330,7 +335,6 @@
 
     .totalSumArea {
         font-size: 11px;
-        /* 移动端字号收敛防止重叠 */
     }
 
     .paginationLeftInfo {

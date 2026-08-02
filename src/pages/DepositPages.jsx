@@ -20,7 +20,7 @@ export default function DepositPages({ isMobile }) {
     };
 
     return (
-        <div style={{ padding: isMobile ? '12px' : '20px 24px', backgroundColor: '#f8fafc', minHeight: '100vh' }}>
+        <div style={{ padding: isMobile ? '12px' : '20px 24px', backgroundColor: '#f1f5f9', minHeight: '100%' }}>
 
             {/* 顶部标题与面包屑导航 */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>

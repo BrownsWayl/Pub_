@@ -5,8 +5,9 @@
 /* --- 🪐 1. 全局底色与通用页面级标题 --- */
 .pageGlobalBackground {
     background-color: #f1f5f9 !important;
-    min-height: 100vh;
+    min-height: 100%;
     width: 100%;
+    padding: 20px 24px;
     box-sizing: border-box;
 }
 

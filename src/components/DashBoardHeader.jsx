@@ -20,7 +20,7 @@ export const DashboardHeader = ({ collapsed, setCollapsed, isMobile }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // 🚀 按照截图完全还原的下拉菜单项
+    // 🚀 下拉菜单项
     const userMenuItems = [
         {
             key: '/dashboard/profile',
@@ -28,12 +28,12 @@ export const DashboardHeader = ({ collapsed, setCollapsed, isMobile }) => {
             label: '个人资料',
             onClick: () => navigate('/dashboard/profile')
         },
-        /*     {
-                key: '/register',
-                icon: <SendOutlined style={{ fontSize: '15px' }} />,
-                label: '开户链接',
-                onClick: () => navigate('/register')
-            }, */
+        {
+            key: '/register',
+            icon: <SendOutlined style={{ fontSize: '15px' }} />,
+            label: '开户链接',
+            onClick: () => navigate('/register')
+        },
         {
             key: '/dashboard/bankcard',
             icon: <CreditCardOutlined style={{ fontSize: '15px' }} />,
@@ -60,7 +60,7 @@ export const DashboardHeader = ({ collapsed, setCollapsed, isMobile }) => {
 
     const navItems = [
         { key: '/', label: '返回首页', icon: <HomeOutlined /> },
-        //   { key: '/register', label: '开户链接', icon: <SendOutlined /> },
+        { key: '/register', label: '开户链接', icon: <SendOutlined /> },
         { key: 'official', label: '返回官网', icon: <DesktopOutlined />, isExternal: true, url: 'https://example.com' }
     ];
 
@@ -85,7 +85,7 @@ export const DashboardHeader = ({ collapsed, setCollapsed, isMobile }) => {
                     </div>
                 )}
 
-                {/* 移动端下如果不展示全量Tab，可隐藏或收窄 */}
+                {/* 移动端下隐藏顶部 Tab */}
                 {!isMobile && navItems.map((item) => {
                     const isActive = location.pathname === item.key;
                     return (
@@ -105,7 +105,7 @@ export const DashboardHeader = ({ collapsed, setCollapsed, isMobile }) => {
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: isMobile ? '10px' : '18px',
+                gap: isMobile ? '12px' : '18px',
                 height: '100%',
                 paddingRight: isMobile ? '12px' : '20px'
             }}>
@@ -133,11 +133,11 @@ export const DashboardHeader = ({ collapsed, setCollapsed, isMobile }) => {
                     <BellOutlined style={{ fontSize: '18px', color: '#64748b', cursor: 'pointer' }} />
                 </Badge>
 
-                {/* 🚀 截图同款用户下拉菜单 */}
+                {/* 🚀 用户下拉菜单 */}
                 <Dropdown
                     menu={{ items: userMenuItems }}
                     placement="bottomRight"
-                    trigger={['click', 'hover']}
+                    trigger={['click']} /* 1. 改为仅点击触发 */
                     overlayStyle={{ paddingTop: '8px' }}
                 >
                     <div style={{
@@ -149,38 +149,40 @@ export const DashboardHeader = ({ collapsed, setCollapsed, isMobile }) => {
                         padding: '0 4px',
                         userSelect: 'none'
                     }}>
-                        {/* 用户头像：橙底搭配柔和人像背景 */}
+                        {/* 用户头像 */}
                         <Avatar
                             style={{
                                 backgroundColor: '#f97316',
                                 verticalAlign: 'middle'
                             }}
-                            size={isMobile ? 28 : 32}
+                            size={isMobile ? 30 : 32}
                             icon={<UserOutlined />}
                         />
 
-                        {/* 用户名 + 下拉箭头（移动端过长时自动截断或仅展示部分） */}
-                        <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '4px',
-                            maxWidth: isMobile ? '90px' : '160px',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap'
-                        }}>
-                            <span style={{
-                                fontSize: '13px',
-                                fontWeight: '500',
-                                color: '#334155',
+                        {/* 2. 仅在非移动端（PC端）时渲染名字和下拉箭头 */}
+                        {!isMobile && (
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                maxWidth: '160px',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
                                 whiteSpace: 'nowrap'
                             }}>
-                                desonfx.xie(1Z4Y)
-                            </span>
-                            <DownOutlined style={{ fontSize: '10px', color: '#64748b', flexShrink: 0 }} />
-                        </div>
+                                <span style={{
+                                    fontSize: '13px',
+                                    fontWeight: '500',
+                                    color: '#334155',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    whiteSpace: 'nowrap'
+                                }}>
+                                    desonfx.xie(1Z4Y)
+                                </span>
+                                <DownOutlined style={{ fontSize: '10px', color: '#64748b', flexShrink: 0 }} />
+                            </div>
+                        )}
                     </div>
                 </Dropdown>
             </div>

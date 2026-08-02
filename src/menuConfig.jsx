@@ -22,13 +22,12 @@ import {
 
 // =================== 🚀 扁平化重新设计的后台管理菜单（全外层平铺） ===================
 export const dashboardMenuItems = [
-  // 客户管理区块
-  { key: '/dashboard/broker', label: 'Broker用户管理', icon: <TeamOutlined /> },
-  { key: '/dashboard/trader', label: 'Trader用户管理', icon: <IdcardOutlined /> },
-  { type: 'divider' },
+
+
+];
+
+export const defaultMenuItems = [
   // 核心业务区块：总览与持仓
-
-
   // 交易管理区块
   { key: '/dashboard/accountlist', label: '我的交易账号', icon: <SlidersOutlined /> },
   { key: '/dashboard/position', label: '我的持仓列表', icon: <HomeOutlined /> },
@@ -36,15 +35,20 @@ export const dashboardMenuItems = [
   { type: 'divider' },
 
   // 资产与报表区块
-  { key: '/dashboard/deposit', label: '在线入金', icon: <DollarOutlined /> },
+  { key: '/dashboard/deposit', label: '在线入金', isOpenNewTab: true, icon: <DollarOutlined /> },
   { key: '/dashboard/cashout', label: '出金申请', icon: <PayCircleOutlined /> },
   { key: '/dashboard/transfer', label: '内部转账', icon: <TransactionOutlined /> },
   { type: 'divider' },
   { key: '/dashboard/fundrecords', label: '账户资金记录', icon: <WalletOutlined /> },
+
+];
+
+// 🟢 特殊用户/专业版专属控制台菜单
+export const specialMenuItems = [
+  // 客户管理区块
+  { key: '/dashboard/broker', label: 'Broker用户管理', icon: <TeamOutlined /> },
+  { type: 'divider' },
+  { key: '/dashboard/trader', label: 'Trader用户管理', icon: <IdcardOutlined /> },
+  { type: 'divider' },
   { key: '/dashboard/commissionreport', label: '佣金报表', icon: <BarChartOutlined /> },
-
-
-
-  // ➖ 第一道视觉分割线：区分核心业务与通用工具（完全还原图 2 节奏）
-
 ];

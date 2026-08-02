@@ -168,7 +168,7 @@ export default function Transfer({ isMobile }) {
     );
 
     return (
-        <div style={{ padding: isMobile ? '12px' : '20px 24px', backgroundColor: '#f8fafc', minHeight: '100vh' }}>
+        <div style={{ background: '#f1f5f9', padding: isMobile ? '12px' : '20px 24px' }}>
 
             {/* 顶栏标题与面包屑 */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>

@@ -331,7 +331,7 @@ export default function CashOut({ isMobile }) {
     );
 
     return (
-        <div style={{ padding: isMobile ? '12px' : '20px 24px', backgroundColor: '#f8fafc', minHeight: '100vh' }}>
+        <div style={{ padding: isMobile ? '12px' : '20px 24px', backgroundColor: '#f1f5f9' }}>
 
             {/* 页头标题与面包屑 */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>

@@ -109,7 +109,7 @@ export const TradeHistoryPage = () => {
             dataIndex: 'openTime',
             key: 'openTime',
             width: 170,
-            responsive: ['lg'], // 💡 仅 PC 大屏幕显示
+            responsive: ['lg'],
             render: (text) => <span style={{ color: '#64748b', fontSize: '12px' }}>{text}</span>
         },
         {
@@ -118,14 +118,14 @@ export const TradeHistoryPage = () => {
             key: 'closePrice',
             align: 'right',
             width: 110,
-            responsive: ['md'] // 💡 移动端完全收进折叠栏，前 6 列之外
+            responsive: ['md']
         },
         {
             title: '平仓时间(MT时间)',
             dataIndex: 'closeTime',
             key: 'closeTime',
             width: 170,
-            responsive: ['lg'], // 💡 仅 PC 大屏幕显示
+            responsive: ['lg'],
             render: (text) => <span style={{ color: '#64748b', fontSize: '12px' }}>{text}</span>
         },
         {
@@ -134,7 +134,7 @@ export const TradeHistoryPage = () => {
             key: 'sl',
             align: 'right',
             width: 110,
-            responsive: ['md'] // 💡 移动端完全收进折叠栏
+            responsive: ['md']
         },
         {
             title: '手续费($)',
@@ -142,7 +142,7 @@ export const TradeHistoryPage = () => {
             key: 'fee',
             align: 'right',
             width: 110,
-            responsive: ['md'] // 💡 移动端完全收进折叠栏
+            responsive: ['md']
         },
         {
             title: '止盈',
@@ -150,7 +150,7 @@ export const TradeHistoryPage = () => {
             key: 'tp',
             align: 'right',
             width: 110,
-            responsive: ['md'] // 💡 移动端完全收进折叠栏
+            responsive: ['md']
         },
         {
             title: '利息',
@@ -158,7 +158,7 @@ export const TradeHistoryPage = () => {
             key: 'swaps',
             align: 'right',
             width: 90,
-            responsive: ['md'] // 💡 移动端完全收进折叠栏
+            responsive: ['md']
         },
         {
             title: '盈亏',
@@ -166,7 +166,7 @@ export const TradeHistoryPage = () => {
             key: 'profit',
             align: 'right',
             width: 110,
-            responsive: ['md'], // 💡 移动端完全收进折叠栏（这样就刚好剩前6列了！）
+            responsive: ['md'],
             render: (val) => {
                 const num = parseFloat(val);
                 return (
@@ -178,7 +178,7 @@ export const TradeHistoryPage = () => {
         }
     ];
 
-    // 📱 移动端自适应下钻面板：把被隐藏的第 7-14 列数据，全部平滑渲染到折叠行中！
+    // 📱 移动端自适应下钻面板
     const mobileExpandedRowRender = (record) => {
         const itemStyle = { display: 'flex', padding: '10px 16px', borderBottom: '1px solid #f1f5f9', fontSize: '13px' };
         const labelStyle = { width: '130px', color: '#64748b', fontWeight: '500' };
@@ -187,7 +187,6 @@ export const TradeHistoryPage = () => {
             <div style={{ background: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
                 <div style={itemStyle}><div style={labelStyle}>平仓价</div><div style={valueStyle}>{record.closePrice}</div></div>
 
-                {/* 盈亏特别用绿/红高亮显示，与页面主格调呼应 */}
                 <div style={itemStyle}>
                     <div style={labelStyle}>盈亏</div>
                     <div style={{ ...valueStyle, fontWeight: '700', color: parseFloat(record.profit) >= 0 ? '#16a34a' : '#f43f5e' }}>
@@ -212,10 +211,10 @@ export const TradeHistoryPage = () => {
 
     return (
         <div className={styles.pageGlobalBackground}>
-            <div style={{ display: 'flex', flexDirection: 'column', width: '100%', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
 
-                {/* 标题 */}
-                <div className={styles.tableTitleArea} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                {/* 标题与面包屑对齐区 */}
+                <div className={styles.tableTitleArea} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <h2 style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
                         交易历史
                     </h2>

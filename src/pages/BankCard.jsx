@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     Card, Table, Button, Tabs, Breadcrumb, Space, Popconfirm, Modal, Form,
-    Input, Select, Radio, Upload, Tag, App, Row, Col
+    Input, Select, Radio, Upload, Tag, App, Row, Col, Descriptions
 } from 'antd';
 import { PlusOutlined, EditOutlined, FileTextOutlined, DeleteOutlined, PictureOutlined } from '@ant-design/icons';
 
@@ -9,8 +9,16 @@ const { Option } = Select;
 
 export default function BankCard({ isMobile }) {
     const [activeTab, setActiveTab] = useState('bank');
-    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-    const [addForm] = Form.useForm();
+
+    // Modal 状态控制
+    const [isFormModalOpen, setIsFormModalOpen] = useState(false); // 添加/编辑 Modal
+    const [modalMode, setModalMode] = useState('add'); // 'add' | 'edit'
+    const [editingRecord, setEditingRecord] = useState(null); // 当前正在编辑的一行数据
+
+    const [isDetailModalOpen, setIsDetailModalOpen] = useState(false); // 查看详情 Modal
+    const [detailRecord, setDetailRecord] = useState(null); // 详情展示数据
+
+    const [form] = Form.useForm();
     const { message } = App.useApp();
     const [imageUrl, setImageUrl] = useState(null);
 
@@ -20,7 +28,13 @@ export default function BankCard({ isMobile }) {
             key: '1',
             bankAccount: '5215015132156416',
             bankName: '恒生银行',
+            payeeName: 'desonfx.xie',
+            country: 'HK',
+            province: '香港',
+            city: '香港',
+            district: '上水',
             branch: '香港上水支行',
+            bankAddress: '香港上水支行',
             swiftCode: '--',
             isDefault: '否'
         }
@@ -28,6 +42,38 @@ export default function BankCard({ isMobile }) {
 
     // 2. 模拟数字货币数据
     const [cryptoData, setCryptoData] = useState([]);
+
+    // ------------------- 动作处理函数 -------------------
+
+    // 打开“添加” Modal
+    const handleOpenAddModal = () => {
+        setModalMode('add');
+        setEditingRecord(null);
+        setImageUrl(null);
+        form.resetFields();
+        setIsFormModalOpen(true);
+    };
+
+    // 打开“编辑” Modal 并填充数据
+    const handleOpenEditModal = (record) => {
+        setModalMode('edit');
+        setEditingRecord(record);
+        setImageUrl(record.cardImg || null);
+
+        // 自动将整行数据赋值给表单
+        form.setFieldsValue({
+            ...record,
+            payeeName: record.payeeName || 'desonfx.xie'
+        });
+
+        setIsFormModalOpen(true);
+    };
+
+    // 打开“查看详情” Modal
+    const handleOpenDetailModal = (record) => {
+        setDetailRecord(record);
+        setIsDetailModalOpen(true);
+    };
 
     // 删除银行卡处理
     const handleDeleteBank = (key) => {
@@ -41,30 +87,59 @@ export default function BankCard({ isMobile }) {
         message.success('已成功删除该数字货币地址');
     };
 
-    // 提交添加表单
-    const handleAddSubmit = (values) => {
+    // 表单提交（兼容 添加 / 编辑）
+    const handleFormSubmit = (values) => {
         if (activeTab === 'bank') {
-            const newBank = {
-                key: Date.now().toString(),
-                bankAccount: values.bankAccount,
-                bankName: values.bankName,
-                branch: values.branch || '--',
-                swiftCode: values.swiftCode || '--',
-                isDefault: values.isDefault || '否'
-            };
-            setBankData((prev) => [...prev, newBank]);
-            message.success('银行卡添加成功！');
+            if (modalMode === 'add') {
+                const newBank = {
+                    key: Date.now().toString(),
+                    bankAccount: values.bankAccount,
+                    bankName: values.bankName,
+                    payeeName: values.payeeName || 'desonfx.xie',
+                    country: values.country || 'HK',
+                    province: values.province || '',
+                    city: values.city || '',
+                    district: values.district || '',
+                    branch: values.branch || '--',
+                    bankAddress: values.bankAddress || '--',
+                    swiftCode: values.swiftCode || '--',
+                    isDefault: values.isDefault || '否',
+                    cardImg: imageUrl
+                };
+                setBankData((prev) => [...prev, newBank]);
+                message.success('银行卡添加成功！');
+            } else {
+                // 编辑数据更新
+                setBankData((prev) =>
+                    prev.map((item) =>
+                        item.key === editingRecord.key
+                            ? { ...item, ...values, cardImg: imageUrl || item.cardImg }
+                            : item
+                    )
+                );
+                message.success('银行卡信息修改成功！');
+            }
         } else {
-            const newCrypto = {
-                key: Date.now().toString(),
-                cryptoType: values.cryptoType,
-                walletAddress: values.walletAddress
-            };
-            setCryptoData((prev) => [...prev, newCrypto]);
-            message.success('数字货币地址添加成功！');
+            if (modalMode === 'add') {
+                const newCrypto = {
+                    key: Date.now().toString(),
+                    cryptoType: values.cryptoType,
+                    walletAddress: values.walletAddress
+                };
+                setCryptoData((prev) => [...prev, newCrypto]);
+                message.success('数字货币地址添加成功！');
+            } else {
+                setCryptoData((prev) =>
+                    prev.map((item) =>
+                        item.key === editingRecord.key ? { ...item, ...values } : item
+                    )
+                );
+                message.success('数字货币地址修改成功！');
+            }
         }
-        setIsAddModalOpen(false);
-        addForm.resetFields();
+
+        setIsFormModalOpen(false);
+        form.resetFields();
         setImageUrl(null);
     };
 
@@ -77,6 +152,8 @@ export default function BankCard({ isMobile }) {
             reader.readAsDataURL(file);
         }
     };
+
+    // ------------------- 表格列配置 -------------------
 
     // 银行卡表格列配置
     const bankColumns = [
@@ -96,9 +173,25 @@ export default function BankCard({ isMobile }) {
             width: 150,
             render: (_, record) => (
                 <Space size="small">
-                    <Button type="text" icon={<EditOutlined style={{ color: '#00bba7' }} />} onClick={() => message.info('编辑功能')} />
-                    <Button type="text" icon={<FileTextOutlined style={{ color: '#64748b' }} />} onClick={() => message.info('查看详情')} />
-                    <Popconfirm title="确定要删除该银行卡吗？" onConfirm={() => handleDeleteBank(record.key)} okText="确定" cancelText="取消">
+                    {/* 铅笔编辑图标 */}
+                    <Button
+                        type="text"
+                        icon={<EditOutlined style={{ color: '#00bba7' }} />}
+                        onClick={() => handleOpenEditModal(record)}
+                    />
+                    {/* 详情查看图标 */}
+                    <Button
+                        type="text"
+                        icon={<FileTextOutlined style={{ color: '#64748b' }} />}
+                        onClick={() => handleOpenDetailModal(record)}
+                    />
+                    {/* 删除图标 */}
+                    <Popconfirm
+                        title="确定要删除该银行卡吗？"
+                        onConfirm={() => handleDeleteBank(record.key)}
+                        okText="确定"
+                        cancelText="取消"
+                    >
                         <Button type="text" danger icon={<DeleteOutlined />} />
                     </Popconfirm>
                 </Space>
@@ -116,8 +209,17 @@ export default function BankCard({ isMobile }) {
             width: 150,
             render: (_, record) => (
                 <Space size="small">
-                    <Button type="text" icon={<EditOutlined style={{ color: '#00bba7' }} />} onClick={() => message.info('编辑功能')} />
-                    <Popconfirm title="确定要删除该钱包地址吗？" onConfirm={() => handleDeleteCrypto(record.key)} okText="确定" cancelText="取消">
+                    <Button
+                        type="text"
+                        icon={<EditOutlined style={{ color: '#00bba7' }} />}
+                        onClick={() => handleOpenEditModal(record)}
+                    />
+                    <Popconfirm
+                        title="确定要删除该钱包地址吗？"
+                        onConfirm={() => handleDeleteCrypto(record.key)}
+                        okText="确定"
+                        cancelText="取消"
+                    >
                         <Button type="text" danger icon={<DeleteOutlined />} />
                     </Popconfirm>
                 </Space>
@@ -127,7 +229,6 @@ export default function BankCard({ isMobile }) {
 
     return (
         <div style={{ padding: isMobile ? '12px' : '20px 24px', backgroundColor: '#f8fafc', minHeight: '100vh' }}>
-
             {/* 顶栏标题与面包屑 */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -161,7 +262,7 @@ export default function BankCard({ isMobile }) {
                                         <Button
                                             type="primary"
                                             icon={<PlusOutlined />}
-                                            onClick={() => setIsAddModalOpen(true)}
+                                            onClick={handleOpenAddModal}
                                             style={{ backgroundColor: '#00bba7', borderColor: '#00bba7', borderRadius: '4px', height: '36px', padding: '0 20px', fontWeight: '500' }}
                                         >
                                             添加
@@ -185,7 +286,7 @@ export default function BankCard({ isMobile }) {
                                         <Button
                                             type="primary"
                                             icon={<PlusOutlined />}
-                                            onClick={() => setIsAddModalOpen(true)}
+                                            onClick={handleOpenAddModal}
                                             style={{ backgroundColor: '#00bba7', borderColor: '#00bba7', borderRadius: '4px', height: '36px', padding: '0 20px', fontWeight: '500' }}
                                         >
                                             添加
@@ -205,54 +306,36 @@ export default function BankCard({ isMobile }) {
                 />
             </Card>
 
-            {/* 图1 & 图2 添加 Modal */}
+            {/* 1. 添加 / 编辑通用 Modal */}
             <Modal
                 title={
                     <span style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b' }}>
-                        {activeTab === 'bank' ? '添加' : '添加数字货币地址'}
+                        {modalMode === 'add'
+                            ? (activeTab === 'bank' ? '添加' : '添加数字货币地址')
+                            : (activeTab === 'bank' ? '编辑' : '编辑数字货币地址')}
                     </span>
                 }
-                open={isAddModalOpen}
+                open={isFormModalOpen}
                 onCancel={() => {
-                    setIsAddModalOpen(false);
-                    addForm.resetFields();
+                    setIsFormModalOpen(false);
+                    form.resetFields();
                     setImageUrl(null);
                 }}
                 footer={
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '20px' }}>
-                        {activeTab === 'bank' ? (
-                            <>
-                                <Button
-                                    type="primary"
-                                    onClick={() => addForm.submit()}
-                                    style={{ backgroundColor: '#00bba7', borderColor: '#00bba7', padding: '0 28px', height: '38px', borderRadius: '4px' }}
-                                >
-                                    提交
-                                </Button>
-                                <Button
-                                    onClick={() => setIsAddModalOpen(false)}
-                                    style={{ backgroundColor: '#64748b', borderColor: '#64748b', color: '#fff', padding: '0 28px', height: '38px', borderRadius: '4px' }}
-                                >
-                                    取消
-                                </Button>
-                            </>
-                        ) : (
-                            <>
-                                <Button
-                                    onClick={() => setIsAddModalOpen(false)}
-                                    style={{ padding: '0 24px', height: '38px', borderRadius: '4px' }}
-                                >
-                                    取消
-                                </Button>
-                                <Button
-                                    type="primary"
-                                    onClick={() => addForm.submit()}
-                                    style={{ backgroundColor: '#00bba7', borderColor: '#00bba7', padding: '0 24px', height: '38px', borderRadius: '4px' }}
-                                >
-                                    保存
-                                </Button>
-                            </>
-                        )}
+                        <Button
+                            type="primary"
+                            onClick={() => form.submit()}
+                            style={{ backgroundColor: '#00bba7', borderColor: '#00bba7', padding: '0 28px', height: '38px', borderRadius: '4px' }}
+                        >
+                            {modalMode === 'add' ? (activeTab === 'bank' ? '提交' : '保存') : '保存修改'}
+                        </Button>
+                        <Button
+                            onClick={() => setIsFormModalOpen(false)}
+                            style={{ backgroundColor: '#64748b', borderColor: '#64748b', color: '#fff', padding: '0 28px', height: '38px', borderRadius: '4px' }}
+                        >
+                            取消
+                        </Button>
                     </div>
                 }
                 width={activeTab === 'bank' ? (isMobile ? '95%' : 720) : (isMobile ? '90%' : 540)}
@@ -260,21 +343,20 @@ export default function BankCard({ isMobile }) {
                 centered
             >
                 <Form
-                    form={addForm}
+                    form={form}
                     layout={activeTab === 'bank' && !isMobile ? 'horizontal' : 'vertical'}
                     labelCol={activeTab === 'bank' && !isMobile ? { span: 6 } : undefined}
                     wrapperCol={activeTab === 'bank' && !isMobile ? { span: 18 } : undefined}
-                    onFinish={handleAddSubmit}
+                    onFinish={handleFormSubmit}
                     initialValues={{
                         payeeName: 'desonfx.xie',
                         isDefault: '否'
                     }}
                     style={{ marginTop: '20px' }}
                 >
-                    {/* 图1：银行卡添加 Modal 表单内容 */}
                     {activeTab === 'bank' ? (
                         <>
-                            {/* 银行卡图片上传 */}
+                            {/* 银行卡图片 */}
                             <Form.Item label="银行卡图片">
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
                                     <Upload
@@ -323,7 +405,7 @@ export default function BankCard({ isMobile }) {
                                 <Input disabled placeholder="desonfx.xie" style={{ height: '38px', borderRadius: '4px', backgroundColor: '#f1f5f9' }} />
                             </Form.Item>
 
-                            {/* 银行地址 (国家 + 省 + 市 + 区县) */}
+                            {/* 银行地址 */}
                             <Form.Item label="银行地址" style={{ marginBottom: isMobile ? '0px' : '24px' }}>
                                 <Row gutter={8}>
                                     <Col xs={24} sm={6}>
@@ -376,7 +458,6 @@ export default function BankCard({ isMobile }) {
                             </Form.Item>
                         </>
                     ) : (
-                        /* 图2：数字货币添加 Modal 表单内容 */
                         <>
                             <Form.Item label="币种" name="cryptoType" rules={[{ required: true, message: '请选择币种' }]}>
                                 <Select placeholder="请选择币种" style={{ height: '40px' }}>
@@ -392,6 +473,41 @@ export default function BankCard({ isMobile }) {
                         </>
                     )}
                 </Form>
+            </Modal>
+
+            {/* 2. 查看详情 Modal */}
+            <Modal
+                title={<span style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b' }}>银行卡详情</span>}
+                open={isDetailModalOpen}
+                onCancel={() => setIsDetailModalOpen(false)}
+                footer={[
+                    <Button
+                        key="close"
+                        type="primary"
+                        onClick={() => setIsDetailModalOpen(false)}
+                        style={{ backgroundColor: '#00bba7', borderColor: '#00bba7', borderRadius: '4px' }}
+                    >
+                        关闭
+                    </Button>
+                ]}
+                width={600}
+                centered
+            >
+                {detailRecord && (
+                    <Descriptions column={1} bordered style={{ marginTop: '16px' }}>
+                        <Descriptions.Item label="银行卡账号">{detailRecord.bankAccount || '--'}</Descriptions.Item>
+                        <Descriptions.Item label="开户行名称">{detailRecord.bankName || '--'}</Descriptions.Item>
+                        <Descriptions.Item label="收款人姓名">{detailRecord.payeeName || 'desonfx.xie'}</Descriptions.Item>
+                        <Descriptions.Item label="开户支行">{detailRecord.branch || '--'}</Descriptions.Item>
+                        <Descriptions.Item label="详细地址">{detailRecord.bankAddress || '--'}</Descriptions.Item>
+                        <Descriptions.Item label="银行Swift码">{detailRecord.swiftCode || '--'}</Descriptions.Item>
+                        <Descriptions.Item label="默认出金银行卡">
+                            <Tag color={detailRecord.isDefault === '是' ? 'green' : 'default'}>
+                                {detailRecord.isDefault || '否'}
+                            </Tag>
+                        </Descriptions.Item>
+                    </Descriptions>
+                )}
             </Modal>
         </div>
     );

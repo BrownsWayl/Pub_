@@ -21,6 +21,9 @@ import Transfer from './pages/Transfer';
 import { Profile } from './pages/Profile';
 import Security from './pages/Security';
 import AccountOverview from './pages/AccountOverview';
+import { RiskGuard } from './pages/RiskGuard';
+import { BrokerGuard } from './pages/BrokerGuard';
+
 
 const { useBreakpoint } = Grid;
 
@@ -41,6 +44,10 @@ export default function App() {
         <Route path="/useragreement" element={<UserAgreement />} />
 
         {/* 👑 后台控制台整体路由（左右穿透式布局结构） */}
+
+        // 这里使用 RiskGuard 来保护所有 /dashboard 下的路由，确保用户必须完成风险评估才能访问其他页面
+        {/* <Route element={<RiskGuard />}> */}
+
         <Route path="/dashboard" element={<UserDashboard isMobile={isMobile} userRole={userRole} />}>
           <Route index element={<Navigate to="/dashboard/accountOverview" />} />
 
@@ -58,6 +65,9 @@ export default function App() {
           <Route path='security' element={<Security />} />
           <Route path="accountOverview" element={<AccountOverview />} />
         </Route>
+
+      // brokerguard 防止trader用户访问
+        {/* <Route element={<BrokerGuard />}> */}
         <Route path="/dashboard" element={<UserDashboard isMobile={false} userRole={userRole} />}>
           <Route path="broker" element={<BrokerPage />} />
           <Route path="trader" element={<TraderPage />} />
@@ -68,6 +78,8 @@ export default function App() {
           <Route path='AccountOverview' element={<AccountOverview />} />
 
         </Route>
+        {/* </Route> */}
+        {/* </Route> */}
       </Routes>
     </Router>
   );

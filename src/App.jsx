@@ -20,6 +20,7 @@ import BankCard from './pages/BankCard';
 import Transfer from './pages/Transfer';
 import { Profile } from './pages/Profile';
 import Security from './pages/Security';
+import AccountOverview from './pages/AccountOverview';
 
 const { useBreakpoint } = Grid;
 
@@ -34,14 +35,14 @@ export default function App() {
     <Router>
       <Routes>
         {/* 前台页面 */}
-        <Route path="/" element={<HomeContent isMobile={isMobile} />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/useragreement" element={<UserAgreement />} />
 
         {/* 👑 后台控制台整体路由（左右穿透式布局结构） */}
         <Route path="/dashboard" element={<UserDashboard isMobile={isMobile} userRole={userRole} />}>
-          <Route index element={<Navigate to="/dashboard/accountlist" />} />
+          <Route index element={<Navigate to="/dashboard/accountOverview" />} />
 
           <Route path="accountlist" element={<AccountListPage />} />
           <Route path="fundrecords" element={<FundRecordsPage />} />
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="transfer" element={<Transfer />} />
           <Route path='profile' element={<Profile />} />
           <Route path='security' element={<Security />} />
+          <Route path="accountOverview" element={<AccountOverview />} />
         </Route>
         <Route path="/dashboard" element={<UserDashboard isMobile={false} userRole={userRole} />}>
           <Route path="broker" element={<BrokerPage />} />
@@ -63,6 +65,7 @@ export default function App() {
           <Route path='profile' element={<Profile />} />
           <Route path='security' element={<Security />} />
           <Route path="bankcard" element={<BankCard />} />
+          <Route path='AccountOverview' element={<AccountOverview />} />
 
         </Route>
       </Routes>

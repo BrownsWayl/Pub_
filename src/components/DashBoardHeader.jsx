@@ -28,12 +28,12 @@ export const DashboardHeader = ({ collapsed, setCollapsed, isMobile }) => {
             label: '个人资料',
             onClick: () => navigate('/dashboard/profile')
         },
-        {
-            key: '/register',
-            icon: <SendOutlined style={{ fontSize: '15px' }} />,
-            label: '开户链接',
-            onClick: () => navigate('/register')
-        },
+        // {
+        //     key: '/register',
+        //     icon: <SendOutlined style={{ fontSize: '15px' }} />,
+        //     label: '开户链接',
+        //     onClick: () => navigate('/register')
+        // },
         {
             key: '/dashboard/bankcard',
             icon: <CreditCardOutlined style={{ fontSize: '15px' }} />,
@@ -59,8 +59,8 @@ export const DashboardHeader = ({ collapsed, setCollapsed, isMobile }) => {
     ];
 
     const navItems = [
-        { key: '/', label: '返回首页', icon: <HomeOutlined /> },
-        { key: '/register', label: '开户链接', icon: <SendOutlined /> },
+        { key: '/dashboard/AccountOverview', label: '返回首页', icon: <HomeOutlined /> },
+        // { key: '/register', label: '开户链接', icon: <SendOutlined /> },
         { key: 'official', label: '返回官网', icon: <DesktopOutlined />, isExternal: true, url: 'https://example.com' }
     ];
 

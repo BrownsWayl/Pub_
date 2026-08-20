@@ -1,0 +1,435 @@
+/* ==========================================================================
+   🔑 独立全屏开户向导样式表：OpenAccount.module.css
+   ========================================================================== */
+
+.fullscreenContainer {
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 顶部极简 Navbar */
+.topNavbar {
+    height: 64px;
+    border-bottom: 1px solid #f1f5f9;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+}
+
+.logoArea {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.logoIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00bba7 0%, #00a680 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    fontWeight: bold;
+    font-size: 13px;
+}
+
+.logoText {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: 0.5px;
+}
+
+.exitButton {
+    background-color: #f1f5f9;
+    border: none;
+    color: #475569;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.exitButton:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+/* 页面内容体 */
+.wizardContent {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 40px 60px 40px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* 自定义步骤进度条 */
+.stepsWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto 40px auto;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.stepsLine {
+    position: absolute;
+    top: 20px;
+    left: 90px;
+    right: 90px;
+    height: 2px;
+    background-color: #e2e8f0;
+    z-index: 1;
+}
+
+.stepsLineActive {
+    position: absolute;
+    top: 20px;
+    left: 90px;
+    height: 2px;
+    background-color: #00bba7;
+    z-index: 1;
+    transition: width 0.3s ease;
+}
+
+.stepItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.stepCircle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2.5px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #94a3b8;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.stepCircleActive {
+    border-color: #00bba7;
+    color: #00bba7;
+    box-shadow: 0 0 0 4px rgba(0, 187, 167, 0.12);
+}
+
+.stepCircleCompleted {
+    background-color: #00bba7;
+    border-color: #00bba7;
+    color: #ffffff;
+}
+
+.stepLabel {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    transition: color 0.3s ease;
+}
+
+.stepLabelActive {
+    color: #00bba7;
+}
+
+.stepLabelCompleted {
+    color: #1e293b;
+}
+
+/* 表单框体 */
+.formBody {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* 表单输入控件高度与微调 */
+.formLabel {
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    font-size: 14px !important;
+}
+
+.helperText {
+    font-size: 12px;
+    color: #f97316;
+    line-height: 1.5;
+    margin-top: 6px;
+    display: block;
+}
+
+/* 投资经验选择框美化 */
+.optionRadioGroup {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.optionRadioGroupVertical {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* KYC 须知说明框 */
+.kycInfoBox {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.kycInfoHeader {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 10px 0;
+}
+
+.kycList {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.6;
+}
+
+.kycList li {
+    margin-bottom: 8px;
+}
+
+.kycList li:last-child {
+    margin-bottom: 0;
+}
+
+.kycText {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 证件上传卡片结构 */
+.uploadGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+    row-gap: 24px;
+    margin-bottom: 30px;
+}
+
+.uploadLabel {
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.requiredStar {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.uploadCard {
+    border: 1px solid #cbd5e1;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.25s ease;
+    overflow: hidden;
+}
+
+.uploadCard:hover {
+    border-color: #00bba7;
+    background-color: #f0fdfa;
+}
+
+.uploadCardActive {
+    border-color: #00bba7;
+    background-color: #f0fdfa;
+}
+
+/* 模拟证件图形 */
+.idCardMock {
+    width: 150px;
+    height: 94px;
+    border: 2.5px solid #cbd5e1;
+    border-radius: 10px;
+    position: relative;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.idCardMockLine1 {
+    position: absolute;
+    left: 12px;
+    bottom: 28px;
+    width: 50px;
+    height: 4px;
+    background-color: #cbd5e1;
+    border-radius: 2px;
+}
+
+.idCardMockLine2 {
+    position: absolute;
+    left: 12px;
+    bottom: 16px;
+    width: 30px;
+    height: 4px;
+    background-color: #cbd5e1;
+    border-radius: 2px;
+}
+
+.idCardMockSlant1 {
+    position: absolute;
+    right: 28px;
+    top: 14px;
+    width: 32px;
+    height: 3.5px;
+    background-color: #cbd5e1;
+    transform: rotate(-35deg);
+    border-radius: 2px;
+}
+
+.idCardMockSlant2 {
+    position: absolute;
+    right: 20px;
+    top: 24px;
+    width: 32px;
+    height: 3.5px;
+    background-color: #cbd5e1;
+    transform: rotate(-35deg);
+    border-radius: 2px;
+}
+
+.uploadSubText {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.uploadedImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background-color: #f8fafc;
+}
+
+/* 按钮行支撑 */
+.buttonsRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.prevButton {
+    height: 40px !important;
+    padding: 0 24px !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    background-color: #f1f5f9 !important;
+    border: none !important;
+    color: #475569 !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.prevButton:hover {
+    background-color: #e2e8f0 !important;
+    color: #1e293b !important;
+}
+
+.submitButton {
+    height: 40px !important;
+    padding: 0 24px !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    background-color: #00bba7 !important;
+    border-color: #00bba7 !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.submitButton:hover {
+    background-color: #00a680 !important;
+    border-color: #00a680 !important;
+}
+
+/* 针对不同屏幕尺码自适应调整 */
+@media (max-width: 768px) {
+    .topNavbar {
+        padding: 0 20px;
+    }
+
+    .wizardContent {
+        padding: 20px 20px 40px 20px;
+    }
+
+    .stepsWrapper {
+        padding: 0 10px;
+        margin-bottom: 30px;
+    }
+
+    .stepsLine {
+        left: 45px;
+        right: 45px;
+    }
+
+    .stepsLineActive {
+        left: 45px;
+    }
+
+    .uploadGrid {
+        grid-template-columns: 1fr;
+    }
+}

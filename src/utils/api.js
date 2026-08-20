@@ -77,4 +77,15 @@ api.interceptors.response.use(
     }
 );
 
+// 模拟后端数据库
+export const mockBackendDb = {
+    customRecords: [],
+    images: {
+        last_id_front_img: null,
+        last_id_back_img: null,
+        last_bank_proof_img: null,
+        last_address_proof_img: null
+    }
+};
+
 export default api;

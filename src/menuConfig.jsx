@@ -39,6 +39,7 @@ export const defaultMenuItems = [
   { key: '/dashboard/cashout', label: '出金申请', icon: <PayCircleOutlined /> },
   { key: '/dashboard/transfer', label: '内部转账', icon: <TransactionOutlined /> },
   { type: 'divider' },
+  { key: '/dashboard/accountrecord', label: '申请记录', icon: <TransactionOutlined/>},
   { key: '/dashboard/fundrecords', label: '账户资金记录', icon: <WalletOutlined /> },
 
 ];

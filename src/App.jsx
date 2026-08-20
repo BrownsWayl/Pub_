@@ -8,6 +8,8 @@ import { UserDashboard } from './pages/UserDashboard';
 import { BrokerPage } from './pages/BrokerPages';
 import { TraderPage } from './pages/TraderPages';
 import { AccountListPage } from './pages/AccountListPages';
+import { AccountRecord } from './pages/AccountRecord';
+import OpenAccount from './pages/OpenAccount';
 import { FundRecordsPage } from './pages/FundRecordsPages';
 import { PositionPage } from './pages/PositionPages';
 import { TradeHistoryPage } from './pages/TradeHistoryPages';
@@ -41,18 +43,18 @@ export default function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/open-account" element={<OpenAccount />} />
         <Route path="/useragreement" element={<UserAgreement />} />
 
         {/* 👑 后台控制台整体路由（左右穿透式布局结构） */}
 
-        // 这里使用 RiskGuard 来保护所有 /dashboard 下的路由，确保用户必须完成风险评估才能访问其他页面
-        {/* <Route element={<RiskGuard />}> */}
-
+     
         <Route path="/dashboard" element={<UserDashboard isMobile={isMobile} userRole={userRole} />}>
           <Route index element={<Navigate to="/dashboard/accountOverview" />} />
 
           <Route path="accountlist" element={<AccountListPage />} />
           <Route path="fundrecords" element={<FundRecordsPage />} />
+          <Route path="accountrecord" element={<AccountRecord />} />
           <Route path="position" element={<PositionPage />} />
           <Route path="tradehistory" element={<TradeHistoryPage />} />
 
@@ -78,7 +80,6 @@ export default function App() {
           <Route path='AccountOverview' element={<AccountOverview />} />
 
         </Route>
-        {/* </Route> */}
         {/* </Route> */}
       </Routes>
     </Router>

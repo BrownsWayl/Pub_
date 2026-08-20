@@ -1,5 +1,6 @@
 import React from 'react';
 import { Avatar, Dropdown, Tooltip, Badge } from 'antd';
+import { mockBackendDb } from '../utils/api';
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
@@ -11,7 +12,8 @@ import {
     CreditCardOutlined,
     LockOutlined,
     PoweroffOutlined,
-    DownOutlined
+    DownOutlined,
+    UserAddOutlined
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -50,9 +52,13 @@ export const DashboardHeader = ({ collapsed, setCollapsed, isMobile }) => {
         }
     ];
 
+    // 💡 判定用户是否已成功提交开户申请
+  //  const hasOpenedAccount = mockBackendDb.customRecords.some(item => item.type === '开户');
+    const hasOpenedAccount = true;
     const navItems = [
         { key: '/dashboard/AccountOverview', label: '返回首页', icon: <HomeOutlined /> },
-        { key: 'official', label: '返回官网', icon: <DesktopOutlined />, isExternal: true, url: 'https://example.com' }
+        { key: 'official', label: '返回官网', icon: <DesktopOutlined />, isExternal: true, url: 'https://example.com' },
+        ...(!hasOpenedAccount ? [{ key: '/open-account', label: '开立交易账户', icon: <UserAddOutlined /> }] : [])
     ];
 
     const handleNavClick = (item) => {
@@ -219,7 +225,7 @@ export const DashboardHeader = ({ collapsed, setCollapsed, isMobile }) => {
                                     textOverflow: 'ellipsis',
                                     whiteSpace: 'nowrap'
                                 }}>
-                                    //用户名保存在本地，在本地存储中获取
+                               {/*用户名保存在本地，在本地存储中获取*/}
                                     desonfx.xie(1Z4Y)
                                 </span>
                                 <DownOutlined style={{ fontSize: '10px', color: '#64748b', flexShrink: 0 }} />
